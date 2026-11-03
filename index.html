@@ -436,7 +436,8 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
       <p class="proj-tag reveal">SCI Technology · Co-op</p>
       <h3 class="proj-title reveal">AeroGuard counter-drone system</h3>
       <p class="one-line reveal">A fully autonomous system that rapidly detects and neutralizes aerial threats.</p>
-      <figure class="lead media-slot reveal" data-lightbox data-label="AeroGuard lead photo">
+      <figure class="lead media-slot reveal" data-lightbox data-label="AeroGuard">
+        <video class="slot-media" muted loop playsinline autoplay preload="metadata" poster="assets/aeroguard-lead.jpg"><source src="assets/aeroguard-lead.mp4" type="video/mp4"></video>
         <img class="slot-media" src="assets/aeroguard-lead.jpg" alt="AeroGuard counter-drone system" loading="lazy">
         <figcaption class="slot-label">[AeroGuard lead photo]</figcaption>
       </figure>
@@ -557,7 +558,7 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
               <div class="stage" aria-live="polite">
                 <div class="layer on media-slot" data-i="0"><img class="slot-media" src="assets/suas-step1.jpg" alt="Model in Siemens NX" loading="lazy"><div class="slot-label"><span class="ph">[Photo: NX model]</span></div></div>
                 <div class="layer media-slot" data-i="1"><img class="slot-media" src="assets/suas-step2.jpg" alt="Molds and wet layup" loading="lazy"><div class="slot-label"><span class="ph">[Photo: molds / carbon layup]</span></div></div>
-                <div class="layer media-slot" data-i="2"><img class="slot-media" src="assets/suas-step3.jpg" alt="Finished airframe" loading="lazy"><div class="slot-label"><span class="ph">[Photo: finished airframe]</span></div></div>
+                <div class="layer media-slot" data-i="2"><video class="slot-media" muted loop playsinline autoplay preload="metadata" poster="assets/suas-step3.jpg"><source src="assets/suas-step3.mp4" type="video/mp4"></video><div class="slot-label"><span class="ph">[Video: first flight]</span></div></div>
               </div>
               <div class="steps">
                 <div class="step on" data-i="0"><span class="n">Model</span><h3>Model in Siemens NX</h3><p>Modeled the fuselage and wings for an autonomous UAV built for surveillance, search-and-rescue, and payload delivery.</p></div>
@@ -576,10 +577,16 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
       </div>
       <section class="gallery-wrap reveal"><p class="lbl">Gallery</p>
         <figure class="gallery media-slot" data-lightbox data-label="SUAS airframe gallery">
-          <img class="slot-media" src="assets/purdue-1.jpg" alt="Carbon-fiber airframe" loading="lazy">
-          <img class="slot-media" src="assets/purdue-2.jpg" alt="Carbon-fiber wet layup" loading="lazy">
-          <img class="slot-media" src="assets/suas-g1.jpg" alt="SUAS photo" loading="lazy">
-          <img class="slot-media" src="assets/suas-g2.jpg" alt="SUAS photo" loading="lazy">
+          <img class="slot-media" src="assets/suas-g1.jpg" alt="Vacuum-sealing a wing composite layup" loading="lazy">
+          <img class="slot-media" src="assets/suas-g2.jpg" alt="Wing rib assembly" loading="lazy">
+          <img class="slot-media" src="assets/suas-g3.jpg" alt="Fuselage layup vacuum sealing" loading="lazy">
+          <img class="slot-media" src="assets/suas-g4.jpg" alt="Helping with the fuselage layup" loading="lazy">
+          <img class="slot-media" src="assets/suas-g5.jpg" alt="Cutting excess composite edges" loading="lazy">
+          <img class="slot-media" src="assets/suas-g6.jpg" alt="Fuselage shell after layup" loading="lazy">
+          <img class="slot-media" src="assets/suas-g7.jpg" alt="Wing after gluing the internal structure" loading="lazy">
+          <img class="slot-media" src="assets/suas-g8.jpg" alt="Finished airframe shell" loading="lazy">
+          <img class="slot-media" src="assets/suas-g9.jpg" alt="Adding the flight controller and compass" loading="lazy">
+          <img class="slot-media" src="assets/suas-g10.jpg" alt="Installed control surfaces" loading="lazy">
           <figcaption class="slot-label">[SUAS gallery — drop photos into assets/]</figcaption>
         </figure>
       </section>
@@ -648,9 +655,11 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
       </div>
       <section class="gallery-wrap reveal"><p class="lbl">Gallery</p>
         <figure class="gallery media-slot" data-lightbox data-label="Foam-cutter gallery">
-          <img class="slot-media" src="assets/foamcutter-g1.jpg" alt="Foam cutter photo" loading="lazy">
-          <img class="slot-media" src="assets/foamcutter-g2.jpg" alt="Foam cutter photo" loading="lazy">
-          <img class="slot-media" src="assets/foamcutter-g3.jpg" alt="Foam cutter photo" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-g1.jpg" alt="CAD of the foam cutter" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-g2.jpg" alt="CAD of the foam cutter" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-g3.jpg" alt="Initial motion-control electronics" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-g4.jpg" alt="Board and power-supply mounting" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-g5.jpg" alt="Mechanical assembly" loading="lazy">
           <figcaption class="slot-label">[Foam-cutter gallery — drop photos into assets/]</figcaption>
         </figure>
       </section>
@@ -883,10 +892,13 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
       if(loaded.indexOf(m) !== -1) return;
       loaded.push(m);
       slot.classList.add('has-media');
-      if(isGallery){ m.classList.add('shown'); }       /* gallery: show every loaded thumb */
-      else {                                            /* single slot: first loaded is the cover */
-        if(!slot.querySelector('.slot-media.cover')) m.classList.add('cover');
-        if(loaded.length > 1) slot.setAttribute('data-count', loaded.length);
+      if(isGallery){ m.classList.add('shown'); return; }  /* gallery: show every loaded thumb */
+      if(m.tagName === 'VIDEO'){                           /* a video always wins the cover... */
+        var prev = slot.querySelector('.slot-media.cover');
+        if(prev && prev !== m) prev.classList.remove('cover');
+        m.classList.add('cover');
+      } else if(!slot.querySelector('.slot-media.cover')){ /* ...else the first image covers (until/unless a video loads) */
+        m.classList.add('cover');
       }
     };
     [].slice.call(slot.querySelectorAll('.slot-media')).forEach(function(m){

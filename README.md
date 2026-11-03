@@ -9,6 +9,10 @@ Drop a file in with the exact name below, reload, and it appears — no code cha
 Missing files never show a broken image; they just keep the label. Each project has a **lead
 photo**, three **build-story steps**, and a **gallery** (any number of files → a lightbox grid).
 
+**Status:** most slots are now filled from your photos. Still open on the foam cutter:
+`foamcutter-wiring.jpg` is currently a stand-in electronics photo — drop your **wiring diagram**
+over it when ready; and `foamcutter-cut.mp4` (a **cutting clip**) is still a placeholder.
+
 ### Origin strip (after the hero)
 | Slot | File in `assets/` |
 |---|---|
