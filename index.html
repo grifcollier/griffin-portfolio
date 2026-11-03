@@ -303,9 +303,11 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
 
 /* project-card thumb placeholder (when no lead image yet) */
 .proj-card .thumb{background:var(--surface); display:flex; align-items:center; justify-content:center; text-align:center; padding:16px; font-family:var(--mono); font-size:12px; color:var(--muted)}
-/* keep per-project build stories shorter than the standalone one so the page stays tight */
-.project .stage{aspect-ratio:16/10}
-.project .step{min-height:54vh}
+/* per-project build stories: layers stack and fill the stage, whole photo shown, tighter steps */
+.project .stage{aspect-ratio:4/3}
+.project .step{min-height:48vh}
+.stage .layer{position:absolute; inset:0}           /* .media-slot sets position:relative; the stage needs layers stacked */
+.stage .slot-media{object-fit:contain}              /* show the whole build photo (no weird crop) on the surface */
 /* "See project →" links in the experience timeline */
 .tl-links{margin-top:10px}
 .tl-link{display:inline-block; margin:0 16px 4px 0; font-size:14px; font-weight:500; color:var(--accent); text-decoration:none}
@@ -556,14 +558,22 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
           <section class="proj-block reveal"><p class="lbl">What I did</p>
             <div class="story">
               <div class="stage" aria-live="polite">
-                <div class="layer on media-slot" data-i="0"><img class="slot-media" src="assets/suas-step1.jpg" alt="Model in Siemens NX" loading="lazy"><div class="slot-label"><span class="ph">[Photo: NX model]</span></div></div>
-                <div class="layer media-slot" data-i="1"><img class="slot-media" src="assets/suas-step2.jpg" alt="Molds and wet layup" loading="lazy"><div class="slot-label"><span class="ph">[Photo: molds / carbon layup]</span></div></div>
-                <div class="layer media-slot" data-i="2"><video class="slot-media" muted loop playsinline autoplay preload="metadata" poster="assets/suas-step3.jpg"><source src="assets/suas-step3.mp4" type="video/mp4"></video><div class="slot-label"><span class="ph">[Video: first flight]</span></div></div>
+                <div class="layer on media-slot" data-i="0"><img class="slot-media" src="assets/suas-step1.jpg" alt="Roughing the MDF mold" loading="lazy"><div class="slot-label"><span class="ph">[Photo: MDF mold]</span></div></div>
+                <div class="layer media-slot" data-i="1"><img class="slot-media" src="assets/suas-step2.jpg" alt="Wet-laying the carbon-fiber wing" loading="lazy"><div class="slot-label"><span class="ph">[Photo: wing layup]</span></div></div>
+                <div class="layer media-slot" data-i="2"><img class="slot-media" src="assets/suas-g2.jpg" alt="Wing rib assembly" loading="lazy"><div class="slot-label"><span class="ph">[Photo: rib structure]</span></div></div>
+                <div class="layer media-slot" data-i="3"><img class="slot-media" src="assets/suas-g4.jpg" alt="Fuselage composite layup" loading="lazy"><div class="slot-label"><span class="ph">[Photo: fuselage layup]</span></div></div>
+                <div class="layer media-slot" data-i="4"><img class="slot-media" src="assets/suas-g8.jpg" alt="Finished airframe shell" loading="lazy"><div class="slot-label"><span class="ph">[Photo: airframe shell]</span></div></div>
+                <div class="layer media-slot" data-i="5"><video class="slot-media" muted loop playsinline autoplay preload="metadata" poster="assets/suas-boot.jpg"><source src="assets/suas-boot.mp4" type="video/mp4"></video><div class="slot-label"><span class="ph">[Video: ground test]</span></div></div>
+                <div class="layer media-slot" data-i="6"><video class="slot-media" muted loop playsinline autoplay preload="metadata" poster="assets/suas-lead.jpg"><source src="assets/suas-step3.mp4" type="video/mp4"></video><div class="slot-label"><span class="ph">[Video: first flight]</span></div></div>
               </div>
               <div class="steps">
-                <div class="step on" data-i="0"><span class="n">Model</span><h3>Model in Siemens NX</h3><p>Modeled the fuselage and wings for an autonomous UAV built for surveillance, search-and-rescue, and payload delivery.</p></div>
-                <div class="step" data-i="1"><span class="n">Mold</span><h3>Mold &amp; lay up</h3><p>Made MDF molds and wet-laid carbon fiber for the fuselage and wings, then bonded the foam-and-plywood internal structure.</p></div>
-                <div class="step" data-i="2"><span class="n">Compete</span><h3>Finish &amp; compete</h3><p>Picked up shop fabrication across the build; the team placed 13th of 72 at the AUVSI-SUAS competition.</p></div>
+                <div class="step on" data-i="0"><span class="n">Mold</span><h3>Rough the molds</h3><p>Modeled the airframe in Siemens NX, then roughed the MDF molds the composite would be laid over.</p></div>
+                <div class="step" data-i="1"><span class="n">Lay up</span><h3>Wet-lay the wings</h3><p>Wet-laid carbon fiber over the molds for the wings and fuselage.</p></div>
+                <div class="step" data-i="2"><span class="n">Structure</span><h3>Build the internal structure</h3><p>Assembled the wing ribs and bonded the foam-and-plywood internal structure.</p></div>
+                <div class="step" data-i="3"><span class="n">Fuselage</span><h3>Lay up the fuselage</h3><p>Laid up and vacuum-sealed the fuselage, then trimmed the excess composite.</p></div>
+                <div class="step" data-i="4"><span class="n">Airframe</span><h3>Finish the airframe</h3><p>Closed out the airframe shell and added the flight controller, compass, and control surfaces.</p></div>
+                <div class="step" data-i="5"><span class="n">Ground test</span><h3>First boot-up &amp; ground test</h3><p>Powered the aircraft up for the first time and ran ground tests before flight.</p></div>
+                <div class="step" data-i="6"><span class="n">Fly</span><h3>First flight</h3><p>Took it to the flight line for first takeoff and flight. The team placed 13th of 72 at AUVSI-SUAS.</p></div>
               </div>
             </div>
           </section>
@@ -578,15 +588,13 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
       <section class="gallery-wrap reveal"><p class="lbl">Gallery</p>
         <figure class="gallery media-slot" data-lightbox data-label="SUAS airframe gallery">
           <img class="slot-media" src="assets/suas-g1.jpg" alt="Vacuum-sealing a wing composite layup" loading="lazy">
-          <img class="slot-media" src="assets/suas-g2.jpg" alt="Wing rib assembly" loading="lazy">
           <img class="slot-media" src="assets/suas-g3.jpg" alt="Fuselage layup vacuum sealing" loading="lazy">
-          <img class="slot-media" src="assets/suas-g4.jpg" alt="Helping with the fuselage layup" loading="lazy">
           <img class="slot-media" src="assets/suas-g5.jpg" alt="Cutting excess composite edges" loading="lazy">
           <img class="slot-media" src="assets/suas-g6.jpg" alt="Fuselage shell after layup" loading="lazy">
           <img class="slot-media" src="assets/suas-g7.jpg" alt="Wing after gluing the internal structure" loading="lazy">
-          <img class="slot-media" src="assets/suas-g8.jpg" alt="Finished airframe shell" loading="lazy">
           <img class="slot-media" src="assets/suas-g9.jpg" alt="Adding the flight controller and compass" loading="lazy">
           <img class="slot-media" src="assets/suas-g10.jpg" alt="Installed control surfaces" loading="lazy">
+          <img class="slot-media" src="assets/suas-step3.jpg" alt="Ready for the first flight test" loading="lazy">
           <figcaption class="slot-label">[SUAS gallery — drop photos into assets/]</figcaption>
         </figure>
       </section>
@@ -623,14 +631,11 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
                     <span class="ph">[Replace with CAD render]</span>
                   </div>
                 </div>
-                <div class="layer media-slot" data-i="1">
-                  <img class="slot-media" src="assets/foamcutter-wiring.jpg" alt="Foam cutter wiring and motion-control electronics" loading="lazy">
-                  <div class="slot-label">
-                    <svg viewBox="0 0 300 180" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-label="Wiring layout"><rect x="120" y="65" width="60" height="50" rx="4"/><circle cx="40" cy="40" r="16"/><circle cx="260" cy="40" r="16"/><circle cx="40" cy="140" r="16"/><circle cx="260" cy="140" r="16"/><path d="M56 40H120V75M244 40H180V75M56 140H120V105M244 140H180V105"/></svg>
-                    <span class="ph">[Replace with wiring photo]</span>
-                  </div>
-                </div>
-                <div class="layer media-slot" data-i="2">
+                <div class="layer media-slot" data-i="1"><img class="slot-media" src="assets/foamcutter-g3.jpg" alt="Initial motion-control electronics" loading="lazy"><div class="slot-label"><span class="ph">[Photo: electronics]</span></div></div>
+                <div class="layer media-slot" data-i="2"><img class="slot-media" src="assets/foamcutter-g4.jpg" alt="Control board and power-supply mounting" loading="lazy"><div class="slot-label"><span class="ph">[Photo: board &amp; power]</span></div></div>
+                <div class="layer media-slot" data-i="3"><img class="slot-media" src="assets/foamcutter-wiring.jpg" alt="Wiring and assembled electronics" loading="lazy"><div class="slot-label"><span class="ph">[Photo: wiring]</span></div></div>
+                <div class="layer media-slot" data-i="4"><img class="slot-media" src="assets/foamcutter-g5.jpg" alt="Mechanical assembly" loading="lazy"><div class="slot-label"><span class="ph">[Photo: mechanical assembly]</span></div></div>
+                <div class="layer media-slot" data-i="5">
                   <video class="slot-media" muted loop playsinline autoplay preload="metadata" poster="assets/foamcutter-cut.jpg"><source src="assets/foamcutter-cut.mp4" type="video/mp4"></video>
                   <div class="slot-label">
                     <svg viewBox="0 0 300 180" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-label="Airfoil cut from foam"><path d="M30 95C70 50 160 46 270 92C160 104 70 108 30 95Z"/><line x1="10" y1="95" x2="290" y2="95" stroke-dasharray="3 6"/></svg>
@@ -639,9 +644,12 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
                 </div>
               </div>
               <div class="steps">
-                <div class="step on" data-i="0"><span class="n">Design</span><h3>Redesigning the frame</h3><p>Started from an open-source design and reworked its specs to enlarge the cutting envelope, then built the MDF frame on table, miter, and band saws.</p></div>
-                <div class="step" data-i="1"><span class="n">Wire</span><h3>Building the electrical system</h3><p>Engineered the motion-control electronics and built every harness, with 3D-printed mounts that line the heat sinks up with the cooling fan.</p></div>
-                <div class="step" data-i="2"><span class="n">Cut</span><h3>Cutting foam cores</h3><p>About 150 hours later, the lab can cut wing and fuselage cores for composite subscale aircraft.</p></div>
+                <div class="step on" data-i="0"><span class="n">Design</span><h3>Redesign the frame</h3><p>Started from an open-source design and reworked the specs to enlarge the cutting envelope, then built the MDF frame on table, miter, and band saws.</p></div>
+                <div class="step" data-i="1"><span class="n">Electronics</span><h3>Motion-control electronics</h3><p>Laid out and built the motion-control electronics that drive the hot wire.</p></div>
+                <div class="step" data-i="2"><span class="n">Power</span><h3>Board &amp; power mounting</h3><p>Mounted the control board and power supply, with 3D-printed mounts that line the heat sinks up with the cooling fan.</p></div>
+                <div class="step" data-i="3"><span class="n">Wire</span><h3>Wire it up</h3><p>Built every harness and wired the system together. <em>(Wiring diagram to come.)</em></p></div>
+                <div class="step" data-i="4"><span class="n">Assemble</span><h3>Mechanical assembly</h3><p>Brought the frame, motion system, and electronics together into the finished machine.</p></div>
+                <div class="step" data-i="5"><span class="n">Cut</span><h3>Cutting foam cores</h3><p>About 150 hours later, the lab can cut wing and fuselage cores for composite subscale aircraft.</p></div>
               </div>
             </div>
           </section>
@@ -657,9 +665,6 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
         <figure class="gallery media-slot" data-lightbox data-label="Foam-cutter gallery">
           <img class="slot-media" src="assets/foamcutter-g1.jpg" alt="CAD of the foam cutter" loading="lazy">
           <img class="slot-media" src="assets/foamcutter-g2.jpg" alt="CAD of the foam cutter" loading="lazy">
-          <img class="slot-media" src="assets/foamcutter-g3.jpg" alt="Initial motion-control electronics" loading="lazy">
-          <img class="slot-media" src="assets/foamcutter-g4.jpg" alt="Board and power-supply mounting" loading="lazy">
-          <img class="slot-media" src="assets/foamcutter-g5.jpg" alt="Mechanical assembly" loading="lazy">
           <figcaption class="slot-label">[Foam-cutter gallery — drop photos into assets/]</figcaption>
         </figure>
       </section>
