@@ -19,11 +19,11 @@ photo**, three **build-story steps**, and a **gallery** (any number of files →
 ### Projects (lead · build steps · gallery)
 | Project | Lead | Build-story steps | Gallery |
 |---|---|---|---|
-| **AeroGuard** (SCI) | `aeroguard-lead.jpg` | `aeroguard-step1.jpg` … `-step3.jpg` | `aeroguard-g1.jpg` … `-g4.jpg` |
-| **Shock-test stand** (SCI) | `shocktester-lead.jpg` | `shocktester-step1.jpg` … `-step3.jpg` | `shocktester-g1.jpg` … `-g3.jpg` |
+| **AeroGuard** (SCI) | `aeroguard-lead.jpg` | *(none — kept brief)* | `aeroguard-g1.jpg` … `-g4.jpg` |
+| **Shock-test stand** (SCI) | `shocktester-lead.jpg` | *(none — kept brief)* | *(none)* |
+| **Subscale testbed drone** (SCI) | `subscale-lead.jpg` | *(none — kept brief)* | *(none)* |
 | **SUAS airframe** (Purdue) | `suas-lead.jpg` | `suas-step1.jpg` … `-step3.jpg` | `purdue-1.jpg`, `purdue-2.jpg`, `suas-g1.jpg`, `suas-g2.jpg` |
 | **CNC foam cutter** (VSDDL) | `foamcutter-lead.jpg` | `foamcutter-render.png`, `foamcutter-wiring.jpg`, `foamcutter-cut.mp4` (poster `foamcutter-cut.jpg`) | `foamcutter-g1.jpg` … `-g3.jpg` |
-| **Subscale VTOL** (VSDDL) | `vtol-lead.jpg` | `vtol-step1.jpg` … `-step3.jpg` | `vtol-1.jpg`, `vtol-2.jpg`, `crate-1.jpg` |
 | **AFRL counter-UAS** *(renders when cleared)* | `afrl-lead.jpg` | `afrl-step1.jpg` … `-step3.jpg` | `afrl-g1.jpg`, `afrl-g2.jpg` |
 
 ### Other
