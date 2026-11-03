@@ -238,9 +238,10 @@ nav .links a.active::after{content:""; position:absolute; left:0; right:0; botto
 .origin-cap{font-family:var(--mono); font-size:12px; letter-spacing:.03em; color:var(--muted); margin-top:10px; text-align:center}
 
 /* ---------- project cards (large, lead-image) ---------- */
-.proj-cards{display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:22px; margin-top:56px}
-a.proj-card{text-decoration:none; color:inherit; background:var(--surface); border-radius:22px; overflow:hidden; display:flex; flex-direction:column; --lift:0px; translate:0 var(--lift); transition:translate .4s cubic-bezier(.2,.7,.2,1)}
-@media (hover:hover){a.proj-card:hover{--lift:-6px}}
+.proj-cards{display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:22px; margin-top:56px; perspective:1000px}
+a.proj-card{position:relative; text-decoration:none; color:inherit; background:var(--surface); border-radius:22px; overflow:hidden; display:flex; flex-direction:column; --lift:0px; translate:0 var(--lift); transition:translate .4s cubic-bezier(.2,.7,.2,1), rotate .4s cubic-bezier(.2,.7,.2,1)}
+a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; opacity:0; transition:opacity .3s; background:radial-gradient(360px circle at var(--mx,50%) var(--my,50%), color-mix(in srgb, var(--accent) 18%, transparent), transparent 70%)}
+@media (hover:hover){a.proj-card:hover{--lift:-6px} a.proj-card:hover::after{opacity:1}}
 .proj-card .thumb{aspect-ratio:16/10; border-radius:0}
 .proj-card .pc-body{padding:22px 24px 26px; display:flex; flex-direction:column; gap:8px}
 .proj-card .tag{font-size:13px; font-weight:500; color:var(--muted)}
@@ -320,7 +321,7 @@ a.proj-card{text-decoration:none; color:inherit; background:var(--surface); bord
 
 <section class="section statement">
   <div class="wrap">
-    <p id="statement">At eleven, I designed a barge with a conveyor to pull drifting logs out of my grandmother's lake. I've been building things that solve real problems ever since. Today that means unmanned aircraft. Most recently I spent a year co-oping at SCI Technology, where I helped build AeroGuard, an autonomous counter-drone system, and a stand to shock-test it. Alongside that: research airframes, a competition UAV, and the tools to build them.</p>
+    <p id="statement">I built a Tinker Toy Ferris wheel at six and a K'nex bridge at seven. At eleven, I designed a barge with a conveyor to pull drifting logs out of my grandmother's lake. I've been building things that solve real problems ever since. Today that means unmanned aircraft: counter-drone hardware, research airframes, and the tools to build them.</p>
     <div class="origin-strip reveal">
       <figure class="origin-item">
         <div class="origin-shot media-slot" data-lightbox data-label="Tinker Toy Ferris wheel, age 6">
@@ -330,11 +331,11 @@ a.proj-card{text-decoration:none; color:inherit; background:var(--surface); bord
         <figcaption class="origin-cap">Ferris wheel · Tinker Toys · age 6</figcaption>
       </figure>
       <figure class="origin-item">
-        <div class="origin-shot media-slot" data-lightbox data-label="K'nex bridge and coaster, age 7">
-          <img class="slot-media" src="assets/origin-7.jpg" alt="Bridge and roller coaster built from K'nex, age 7" loading="lazy">
-          <span class="slot-label">[Photo: K'nex bridge &amp; coaster, age 7]</span>
+        <div class="origin-shot media-slot" data-lightbox data-label="K'nex bridge, age 7">
+          <img class="slot-media" src="assets/origin-7.jpg" alt="Bridge built from K'nex, age 7" loading="lazy">
+          <span class="slot-label">[Photo: K'nex bridge, age 7]</span>
         </div>
-        <figcaption class="origin-cap">Bridge &amp; coaster · K'nex · age 7</figcaption>
+        <figcaption class="origin-cap">Bridge · K'nex · age 7</figcaption>
       </figure>
       <!-- No childhood barge photo yet; remove `hidden` to show it if one turns up (drop assets/origin-barge.jpg). -->
       <figure class="origin-item" hidden>
@@ -851,7 +852,7 @@ a.proj-card{text-decoration:none; color:inherit; background:var(--surface); bord
 
   /* card tilt and spotlight follow the cursor */
   if(!reduce && window.matchMedia && matchMedia('(hover:hover)').matches){
-    [].slice.call(document.querySelectorAll('.card')).forEach(function(card){
+    [].slice.call(document.querySelectorAll('.proj-card')).forEach(function(card){
       card.addEventListener('pointermove', function(e){
         var r = card.getBoundingClientRect();
         var x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
