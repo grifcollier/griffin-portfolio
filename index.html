@@ -675,23 +675,39 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
             <div class="build">
               <div class="build-step">
                 <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-render.png" alt="CNC hot-wire foam cutter CAD render" loading="lazy"><figcaption class="slot-label">[CAD render]</figcaption></figure>
-                <div class="btext reveal"><span class="n">Design</span><h3>Design the frame</h3><p>Designed the frame from an open-source baseline, enlarging the cutting envelope, then built the MDF frame on table, miter, and band saws.</p></div>
+                <div class="btext reveal"><span class="n">Design</span><h3>Design the frame</h3><p>Designed the frame in CAD, starting from an open-source baseline and enlarging the envelope.</p></div>
               </div>
               <div class="build-step">
-                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-g3.jpg" alt="Initial motion-control electronics" loading="lazy"><figcaption class="slot-label">[Photo: electronics]</figcaption></figure>
-                <div class="btext reveal"><span class="n">Electronics</span><h3>Motion-control electronics</h3><p>Laid out and built the motion-control electronics that drive the hot wire.</p></div>
+                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-wiring-diagram.png" alt="Foam cutter wiring diagram" loading="lazy"><figcaption class="slot-label">[Wiring diagram]</figcaption></figure>
+                <div class="btext reveal"><span class="n">Electronics design</span><h3>Design the electronic assembly</h3><p>Designed the electronic assembly and drew up the full wiring diagram.</p></div>
+              </div>
+              <div class="build-step">
+                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-g5.jpg" alt="Cutting and assembling the hardware" loading="lazy"><figcaption class="slot-label">[Photo: hardware]</figcaption></figure>
+                <div class="btext reveal"><span class="n">Build</span><h3>Cut &amp; assemble the hardware</h3><p>Cut the frame parts on table, miter, and band saws, and assembled the mechanical hardware.</p></div>
+              </div>
+              <div class="build-step">
+                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-g3.jpg" alt="Soldering the wire harnesses" loading="lazy"><figcaption class="slot-label">[Photo: harnesses]</figcaption></figure>
+                <div class="btext reveal"><span class="n">Solder</span><h3>Solder the wire harnesses</h3><p>Built and soldered every wire harness for the system.</p></div>
+              </div>
+              <div class="build-step">
+                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-boardmount.jpg" alt="3D-printed board mounts (STL)" loading="lazy"><figcaption class="slot-label">[Board-mount STL]</figcaption></figure>
+                <div class="btext reveal"><span class="n">Mounts</span><h3>Design &amp; 3D-print the board mounts</h3><p>Designed and 3D-printed custom board mounts that line the heat sinks up with the cooling fan.</p></div>
               </div>
               <div class="build-step">
                 <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-g4.jpg" alt="Control board and power-supply mounting" loading="lazy"><figcaption class="slot-label">[Photo: board &amp; power]</figcaption></figure>
-                <div class="btext reveal"><span class="n">Power</span><h3>Board &amp; power mounting</h3><p>Mounted the control board and power supply, with 3D-printed mounts that line the heat sinks up with the cooling fan.</p></div>
+                <div class="btext reveal"><span class="n">Mount</span><h3>Board &amp; power mounting</h3><p>Mounted the control board and power supply onto the printed mounts.</p></div>
               </div>
               <div class="build-step">
                 <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-wiring.jpg" alt="Wiring and assembled electronics" loading="lazy"><figcaption class="slot-label">[Photo: wiring]</figcaption></figure>
-                <div class="btext reveal"><span class="n">Wire</span><h3>Wire it up</h3><p>Built every harness and wired the system together. <em>(Wiring diagram to come.)</em></p></div>
+                <div class="btext reveal"><span class="n">Wire</span><h3>Wire it up</h3><p>Wired the system together and tidied the harness runs.</p></div>
               </div>
               <div class="build-step">
-                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-g5.jpg" alt="Mechanical assembly" loading="lazy"><figcaption class="slot-label">[Photo: mechanical assembly]</figcaption></figure>
+                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-lead.jpg" alt="Everything assembled" loading="lazy"><figcaption class="slot-label">[Photo: assembled machine]</figcaption></figure>
                 <div class="btext reveal"><span class="n">Assemble</span><h3>Mechanical assembly</h3><p>Brought the frame, motion system, and electronics together into the finished machine.</p></div>
+              </div>
+              <div class="build-step">
+                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-software.jpg" alt="Motion-control software" loading="lazy"><figcaption class="slot-label">[Software]</figcaption></figure>
+                <div class="btext reveal"><span class="n">Software</span><h3>Tune the software</h3><p>Tuned the motion-control software to drive the hot wire accurately.</p></div>
               </div>
               <div class="build-step">
                 <figure class="shot media-slot reveal" data-lightbox><video class="slot-media" muted loop playsinline autoplay preload="metadata" poster="assets/foamcutter-cut.jpg"><source src="assets/foamcutter-cut.mp4" type="video/mp4"></video><figcaption class="slot-label">[Cutting clip — coming soon]</figcaption></figure>
@@ -712,11 +728,14 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
           <img class="slot-media" src="assets/foamcutter-render.png" alt="CAD render of the foam cutter" loading="lazy">
           <img class="slot-media" src="assets/foamcutter-g1.jpg" alt="CAD of the foam cutter" loading="lazy">
           <img class="slot-media" src="assets/foamcutter-g2.jpg" alt="CAD of the foam cutter" loading="lazy">
-          <img class="slot-media" src="assets/foamcutter-g3.jpg" alt="Initial motion-control electronics" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-wiring-diagram.png" alt="Foam cutter wiring diagram" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-g5.jpg" alt="Cutting and assembling the hardware" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-g3.jpg" alt="Soldering the wire harnesses" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-boardmount.jpg" alt="3D-printed board mounts (STL)" loading="lazy">
           <img class="slot-media" src="assets/foamcutter-g4.jpg" alt="Board and power-supply mounting" loading="lazy">
           <img class="slot-media" src="assets/foamcutter-wiring.jpg" alt="Wiring and assembled electronics" loading="lazy">
-          <img class="slot-media" src="assets/foamcutter-g5.jpg" alt="Mechanical assembly" loading="lazy">
           <img class="slot-media" src="assets/foamcutter-lead.jpg" alt="The finished foam cutter" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-software.jpg" alt="Motion-control software" loading="lazy">
           <figcaption class="slot-label">[Foam-cutter gallery — drop photos into assets/]</figcaption>
         </figure>
       </section>
