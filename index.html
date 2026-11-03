@@ -498,11 +498,22 @@ nav .links a.active::after{content:""; position:absolute; left:0; right:0; botto
         items[k].classList.toggle('hit', items[k].offsetTop + off - start <= reached + 1);
       }
     };
+    /* Browsers without CSS scroll-driven animations (Safari < 26, iOS, Firefox)
+       never animate .tl-fill, so drive its height from scroll position instead. */
+    var vtSupported = !!(window.CSS && CSS.supports && CSS.supports('animation-timeline: view()'));
+    var fallback = !vtSupported && !reduce;
+    var drawFallback = function(){
+      var r = tl.getBoundingClientRect(), vh = window.innerHeight || document.documentElement.clientHeight;
+      var p = (vh * 0.8 - r.top) / (r.height * 0.6 + vh * 0.1);
+      p = Math.max(0, Math.min(1, p));
+      fillEl.style.transform = 'scaleY(' + p.toFixed(4) + ')';
+    };
+    var run = function(){ if(fallback) drawFallback(); check(); };
     var queued = false;
-    window.addEventListener('scroll', function(){ if(!queued){ queued = true; requestAnimationFrame(function(){ queued = false; check(); }); } }, {passive:true});
-    fit(); check();
-    window.addEventListener('resize', function(){ fit(); check(); });
-    if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ fit(); check(); });
+    window.addEventListener('scroll', function(){ if(!queued){ queued = true; requestAnimationFrame(function(){ queued = false; run(); }); } }, {passive:true});
+    fit(); run();
+    window.addEventListener('resize', function(){ fit(); run(); });
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ fit(); run(); });
   }
 
   /* card tilt and spotlight follow the cursor */
