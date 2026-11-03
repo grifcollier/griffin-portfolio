@@ -185,8 +185,8 @@ a.card{text-decoration:none; color:inherit}
 
 /* statement fills in as you read */
 .statement p{margin:28px 0 0; max-width:980px; font-size:clamp(28px, 3.8vw, 46px); line-height:1.22; font-weight:500; letter-spacing:-.025em; text-wrap:pretty}
-.statement .wd{color:var(--muted); transition:color .25s ease}
-.statement .wd.lit{color:var(--fg)}
+.statement .wd,.mission .wd{color:color-mix(in srgb, var(--fg) 22%, transparent); transition:color .3s ease}
+.statement .wd.lit,.mission .wd.lit{color:var(--fg)}
 
 /* Scroll-driven motion. Browsers without support simply show everything at rest. */
 @supports (animation-timeline: view()){
@@ -417,7 +417,7 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
 <section id="mission" class="section mission">
   <div class="wrap">
     <h2 class="reveal">Mission</h2>
-    <p class="reveal">I want to help change how the U.S. builds defense systems. Christian Brose's <em>The Kill Chain</em> is what made it click — too much of the defense industry is built around large, exquisite platforms that take decades to field and routinely run over budget. Meanwhile, cheap, attritable systems are reshaping what actually matters on the battlefield. I want to be part of the shift toward building faster, smaller and smarter, putting capable hardware in operators' hands in months, not decades. I'm starting where I believe the work matters most: on the engineering side, designing, building and testing the systems themselves.</p>
+    <p id="missionText" class="reveal">I want to help change how the U.S. builds defense systems. Christian Brose's <em>The Kill Chain</em> is what made it click — too much of the defense industry is built around large, exquisite platforms that take decades to field and routinely run over budget. Meanwhile, cheap, attritable systems are reshaping what actually matters on the battlefield. I want to be part of the shift toward building faster, smaller and smarter, putting capable hardware in operators' hands in months, not decades. I'm starting where I believe the work matters most: on the engineering side, designing, building and testing the systems themselves.</p>
   </div>
 </section>
 
@@ -900,15 +900,31 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
     }).join(' ');
   }
 
-  /* statement words light up with scroll */
-  var st = document.getElementById('statement');
-  if(st){
-    st.innerHTML = st.textContent.trim().split(/\s+/).map(function(w){ return '<span class="wd">' + w + '</span>'; }).join(' ');
-    var words = [].slice.call(st.querySelectorAll('.wd'));
-    var ticking = false;
+  /* statement + mission words light up with scroll (keeps inline markup like <em>) */
+  var lightify = function(el){
+    var words = [];
+    var wrap = function(node){
+      var frag = document.createDocumentFragment();
+      node.textContent.split(/(\s+)/).forEach(function(tok){
+        if(tok === '') return;
+        if(/^\s+$/.test(tok)){ frag.appendChild(document.createTextNode(tok)); return; }
+        var s = document.createElement('span'); s.className = 'wd'; s.textContent = tok;
+        frag.appendChild(s); words.push(s);
+      });
+      node.parentNode.replaceChild(frag, node);
+    };
+    [].slice.call(el.childNodes).forEach(function(n){
+      if(n.nodeType === 3){ wrap(n); }
+      else if(n.nodeType === 1){ [].slice.call(n.childNodes).forEach(function(c){ if(c.nodeType === 3) wrap(c); }); }
+    });
+    return words;
+  };
+  var setupLight = function(el){
+    if(!el) return;
+    var words = lightify(el), ticking = false;
     var update = function(){
       ticking = false;
-      var r = st.getBoundingClientRect(), vh = window.innerHeight;
+      var r = el.getBoundingClientRect(), vh = window.innerHeight;
       var p = reduce ? 1 : Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (r.height + vh * 0.35)));
       var n = Math.round(p * words.length);
       for(var k = 0; k < words.length; k++) words[k].classList.toggle('lit', k < n);
@@ -916,7 +932,9 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
     window.addEventListener('scroll', function(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }, {passive:true});
     window.addEventListener('resize', update);
     update();
-  }
+  };
+  setupLight(document.getElementById('statement'));
+  setupLight(document.getElementById('missionText'));
 
   /* run the timeline line exactly from the first dot to the last */
   var tl = document.querySelector('.tl');
