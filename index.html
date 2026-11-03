@@ -310,6 +310,14 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
 .tl-links{margin-top:10px}
 .tl-link{display:inline-block; margin:0 16px 4px 0; font-size:14px; font-weight:500; color:var(--accent); text-decoration:none}
 .tl-link:hover{text-decoration:underline}
+
+/* hero positioning tagline (under the name) */
+.hero .tagline{max-width:700px; margin:24px 0 0; font-size:clamp(21px,2.5vw,30px); font-weight:600; line-height:1.25; letter-spacing:-.02em; text-wrap:balance}
+
+/* mission / point-of-view section */
+.mission p{margin:16px 0 0; max-width:940px; font-size:clamp(22px,2.9vw,34px); line-height:1.32; font-weight:500; letter-spacing:-.02em; text-wrap:pretty; color:var(--muted)}
+.mission p em{font-style:italic; color:var(--fg)}
+.mission p .accent{color:var(--fg)}
 </style>
 </head>
 <body>
@@ -323,6 +331,7 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
 <header id="top" class="hero wrap">
   <p class="eyebrow">Mechanical engineer · UAS &amp; defense</p>
   <h1>Griffin Collier</h1>
+  <p class="tagline">Building the fast, affordable, attritable systems the next generation of defense requires.</p>
   <p class="lede">Mechanical engineering senior at Auburn University, graduating May 2027, with two years of experience in autonomous aerial systems and counter-UAS technology. I work across CAD, composite and additive manufacturing, and fabrication, with working knowledge of electronics, CFD, FEA, and motion analysis.</p>
   <ul class="edu">
     <li>Bachelor of Mechanical Engineering, minor in Finance</li>
@@ -360,6 +369,13 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
         <figcaption class="origin-cap">Log barge · age 11</figcaption>
       </figure>
     </div>
+  </div>
+</section>
+
+<section class="section mission">
+  <div class="wrap">
+    <p class="eyebrow reveal">Mission</p>
+    <p id="mission" class="reveal">This is really my calling: I want to help change how the U.S. builds defense systems. Christian Brose's <em>The Kill Chain</em> is what made it click — too much of the defense industry is built around large, exquisite platforms that take decades to field and routinely run over budget. Meanwhile, cheap, attritable systems are reshaping what actually matters on the battlefield. I want to be part of the shift toward building faster, smaller and smarter, putting capable hardware in operators' hands in months, not decades. I'm starting where I believe the work matters most: on the engineering side, designing, building and testing the systems themselves.</p>
   </div>
 </section>
 
