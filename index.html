@@ -314,17 +314,16 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
 /* hero positioning tagline (under the name) */
 .hero .tagline{max-width:700px; margin:24px 0 0; font-size:clamp(21px,2.5vw,30px); font-weight:600; line-height:1.25; letter-spacing:-.02em; text-wrap:balance}
 
-/* mission / point-of-view section */
-.mission p{margin:16px 0 0; max-width:940px; font-size:clamp(22px,2.9vw,34px); line-height:1.32; font-weight:500; letter-spacing:-.02em; text-wrap:pretty; color:var(--muted)}
-.mission p em{font-style:italic; color:var(--fg)}
-.mission p .accent{color:var(--fg)}
+/* mission / point-of-view section — matches the Background statement scale */
+.mission p{margin:24px 0 0; max-width:1000px; font-size:clamp(24px,3.3vw,40px); line-height:1.25; font-weight:500; letter-spacing:-.025em; text-wrap:pretty; color:var(--fg)}
+.mission p em{font-style:italic}
 </style>
 </head>
 <body>
 <nav aria-label="Primary">
   <div class="wrap">
     <a class="brand" href="#top" style="text-decoration:none; font-weight:600">Griffin Collier</a>
-    <div class="links"><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a></div>
+    <div class="links"><a href="#background">Background</a><a href="#mission">Mission</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a></div>
   </div>
 </nav>
 
@@ -342,8 +341,9 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
   <div class="cta"><a class="btn primary" href="#projects">See the work</a><a class="btn ghost" href="#contact">Get in touch</a><a class="btn ghost" href="assets/griffin-collier-resume.pdf" download>Download résumé</a></div>
 </header>
 
-<section class="section statement">
+<section id="background" class="section statement">
   <div class="wrap">
+    <h2 class="reveal">Background</h2>
     <p id="statement">I built a Tinker Toy Ferris wheel at six and a K'nex bridge at seven. At eleven, I designed a barge with a conveyor to pull drifting logs out of my grandmother's lake. I've been building things that solve real problems ever since. Today that means unmanned aircraft: counter-drone hardware, research airframes, and the tools to build them.</p>
     <div class="origin-strip reveal">
       <figure class="origin-item">
@@ -372,10 +372,10 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
   </div>
 </section>
 
-<section class="section mission">
+<section id="mission" class="section mission">
   <div class="wrap">
-    <p class="eyebrow reveal">Mission</p>
-    <p id="mission" class="reveal">This is really my calling: I want to help change how the U.S. builds defense systems. Christian Brose's <em>The Kill Chain</em> is what made it click — too much of the defense industry is built around large, exquisite platforms that take decades to field and routinely run over budget. Meanwhile, cheap, attritable systems are reshaping what actually matters on the battlefield. I want to be part of the shift toward building faster, smaller and smarter, putting capable hardware in operators' hands in months, not decades. I'm starting where I believe the work matters most: on the engineering side, designing, building and testing the systems themselves.</p>
+    <h2 class="reveal">Mission</h2>
+    <p class="reveal">This is really my calling: I want to help change how the U.S. builds defense systems. Christian Brose's <em>The Kill Chain</em> is what made it click — too much of the defense industry is built around large, exquisite platforms that take decades to field and routinely run over budget. Meanwhile, cheap, attritable systems are reshaping what actually matters on the battlefield. I want to be part of the shift toward building faster, smaller and smarter, putting capable hardware in operators' hands in months, not decades. I'm starting where I believe the work matters most: on the engineering side, designing, building and testing the systems themselves.</p>
   </div>
 </section>
 
@@ -721,18 +721,6 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
       <li class="skill-group reveal"><span class="skill-step">05</span><h3>Code &amp; Test</h3><ul class="chips"><li>Hardware testing</li><li>Flight testing</li><li>Design iteration</li><li>Agile / Scrum</li><li>Python</li><li>MATLAB</li><li>C / C++</li><li>Java</li><li>JavaScript</li></ul></li>
     </ol>
     <div class="creds reveal"><strong>Credentials</strong><ul class="chips"><li>FAA Part 107 Remote Pilot</li><li>U.S. Citizen</li></ul></div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="wrap">
-    <h2 class="reveal">Flight testing</h2>
-    <p class="sub reveal">Every design on this page ends the same way: on the flight line, where test data decides the next iteration.</p>
-    <figure class="media media-slot" data-lightbox data-label="Flight line photo">
-      <video class="slot-media" muted loop playsinline autoplay preload="metadata" poster="assets/flightline.jpg"><source src="assets/flightline.mp4" type="video/mp4"></video>
-      <img class="slot-media" src="assets/flightline.jpg" alt="Flight line test" loading="lazy">
-      <figcaption class="slot-label">[Full-width flight photo or video loop]</figcaption>
-    </figure>
   </div>
 </section>
 

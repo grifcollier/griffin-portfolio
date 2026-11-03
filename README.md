@@ -29,7 +29,6 @@ photo**, three **build-story steps**, and a **gallery** (any number of files →
 ### Other
 | Slot | File in `assets/` |
 |---|---|
-| Full-width flight-testing band | `flightline.mp4` and/or `flightline.jpg` |
 | Résumé (enables the Download button) | `griffin-collier-resume.pdf` |
 | Social-share preview image *(optional, 1200×630)* | `og-image.jpg` — then uncomment the `og:image`/`twitter:image` lines in `index.html` and set `twitter:card` to `summary_large_image` |
 
