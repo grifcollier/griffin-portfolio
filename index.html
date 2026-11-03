@@ -307,7 +307,10 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
 .project .stage{aspect-ratio:4/3}
 .project .step{min-height:48vh}
 .stage .layer{position:absolute; inset:0}           /* .media-slot sets position:relative; the stage needs layers stacked */
-.stage .slot-media{object-fit:contain}              /* show the whole build photo (no weird crop) on the surface */
+.stage .slot-media{object-fit:contain; z-index:1}   /* show the whole build photo (no weird crop)... */
+.stage .layer::before{content:""; position:absolute; inset:0; z-index:0; background:var(--bg,none) center/cover no-repeat; filter:blur(34px) brightness(.5) saturate(1.15); transform:scale(1.25); opacity:0; transition:opacity .5s ease}
+.stage .layer.has-media::before{opacity:1}           /* ...over a blurred fill of itself, so portrait photos don't leave empty bars */
+.gallery video.slot-media{cursor:pointer}
 /* "See project →" links in the experience timeline */
 .tl-links{margin-top:10px}
 .tl-link{display:inline-block; margin:0 16px 4px 0; font-size:14px; font-weight:500; color:var(--accent); text-decoration:none}
@@ -393,7 +396,7 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
         <li class="tl-item reveal"><span class="tl-year">2023</span><div><h3>Transferred to Auburn University</h3><p>Bachelor of Mechanical Engineering, minor in finance.</p></div></li>
         <li class="tl-item reveal"><span class="tl-year">2024–25</span><div><h3>Mechanical Engineering Co-op · SCI Technology</h3><p>Three rotations (Jan 2024 – Aug 2025) designing, building, and flight-testing counter-drone hardware in Huntsville, AL.</p><p class="tl-links"><a class="tl-link" href="#proj-aeroguard">See: AeroGuard →</a><a class="tl-link" href="#proj-shocktester">See: Shock-test stand →</a><a class="tl-link" href="#proj-subscale">See: Subscale →</a></p></div></li>
         <li class="tl-item reveal"><span class="tl-year">2025</span><div><h3>Co-op &amp; Internship Ambassador · Auburn University</h3><p>With Career Development &amp; Corporate Relations, mentored underclassmen through applying, onboarding, and accepting offers; presented to classes and helped run on-campus career fairs.</p></div></li>
-        <li class="tl-item reveal"><span class="tl-year">2026–Present</span><div><h3>Undergraduate Researcher · Auburn Vehicle Systems, Dynamics &amp; Design Lab</h3><p>Rebuilt the lab's CNC hot-wire foam cutter to cut larger composite cores, and support subscale aircraft research.</p><p class="tl-links"><a class="tl-link" href="#proj-foamcutter">See: Foam cutter →</a></p></div></li>
+        <li class="tl-item reveal"><span class="tl-year">2026–Present</span><div><h3>Undergraduate Researcher · Auburn Vehicle Systems, Dynamics &amp; Design Lab</h3><p>Designed and built the lab's CNC hot-wire foam cutter to cut larger composite cores, and support subscale aircraft research.</p><p class="tl-links"><a class="tl-link" href="#proj-foamcutter">See: Foam cutter →</a></p></div></li>
         <li class="tl-item reveal"><span class="tl-year">2026–Present</span><div><h3>Senior Design · AFRL counter-UAS</h3><p>Developing a man-portable counter-sUAS system for the Air Force Research Laboratory; co-authored our 80-page Preliminary Design Review.</p><p class="tl-links"><a class="tl-link" href="#proj-afrl">See: AFRL →</a></p></div></li>
         <li class="tl-item next reveal"><span class="tl-year">2027</span><div><h3>Bachelor of Mechanical Engineering, expected May 2027</h3><p>Seeking a full-time aerospace or mechanical engineering role in UAS and defense.</p></div></li>
       </ol>
@@ -416,7 +419,7 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
       </a>
       <a class="proj-card reveal" href="#proj-subscale">
         <div class="thumb media-slot"><img class="slot-media" src="assets/subscale-lead.jpg" alt="Subscale testbed drone" loading="lazy"><span class="slot-label">[Subscale lead photo]</span></div>
-        <div class="pc-body"><span class="tag">SCI Technology · Co-op</span><h3>Subscale testbed drone</h3><p>Redesigned, built, and tested the team's testbed drone to add fiber-optic capability and a camera.</p><span class="more">View project →</span></div>
+        <div class="pc-body"><span class="tag">SCI Technology · Co-op</span><h3>Subscale testbed drone</h3><p>Designed, built, and tested the team's testbed drone to add fiber-optic capability and a camera.</p><span class="more">View project →</span></div>
       </a>
       <a class="proj-card reveal" href="#proj-suas">
         <div class="thumb media-slot"><img class="slot-media" src="assets/suas-lead.jpg" alt="Carbon-fiber SUAS airframe" loading="lazy"><span class="slot-label">[SUAS airframe lead photo]</span></div>
@@ -424,7 +427,7 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
       </a>
       <a class="proj-card reveal" href="#proj-foamcutter">
         <div class="thumb media-slot"><img class="slot-media" src="assets/foamcutter-lead.jpg" alt="CNC hot-wire foam cutter" loading="lazy"><span class="slot-label">[Foam-cutter lead photo]</span></div>
-        <div class="pc-body"><span class="tag">Auburn VSDDL</span><h3>CNC hot-wire foam cutter</h3><p>A rebuilt cutter that makes the lab's wing and fuselage cores.</p><span class="more">View project →</span></div>
+        <div class="pc-body"><span class="tag">Auburn VSDDL</span><h3>CNC hot-wire foam cutter</h3><p>A cutter I designed and built to make the lab's wing and fuselage cores.</p><span class="more">View project →</span></div>
       </a>
       <a class="proj-card reveal" href="#proj-afrl">
         <div class="thumb media-slot"><img class="slot-media" src="assets/afrl-lead.jpg" alt="AFRL counter-UAS concept" loading="lazy"><span class="slot-label">[AFRL render, when cleared]</span></div>
@@ -465,10 +468,11 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
       </div>
       <section class="gallery-wrap reveal"><p class="lbl">Gallery</p>
         <figure class="gallery media-slot" data-lightbox data-label="AeroGuard gallery">
-          <img class="slot-media" src="assets/aeroguard-g1.jpg" alt="AeroGuard photo" loading="lazy">
-          <img class="slot-media" src="assets/aeroguard-g2.jpg" alt="AeroGuard photo" loading="lazy">
-          <img class="slot-media" src="assets/aeroguard-g3.jpg" alt="AeroGuard photo" loading="lazy">
-          <img class="slot-media" src="assets/aeroguard-g4.jpg" alt="AeroGuard photo" loading="lazy">
+          <video class="slot-media" muted loop playsinline preload="metadata" poster="assets/aeroguard-lead.jpg"><source src="assets/aeroguard-lead.mp4" type="video/mp4"></video>
+          <img class="slot-media" src="assets/aeroguard-lead.jpg" alt="AeroGuard" loading="lazy">
+          <img class="slot-media" src="assets/aeroguard-g1.jpg" alt="AeroGuard capture still" loading="lazy">
+          <img class="slot-media" src="assets/aeroguard-g2.jpg" alt="At work on AeroGuard" loading="lazy">
+          <img class="slot-media" src="assets/aeroguard-g3.jpg" alt="Net-capture still" loading="lazy">
           <figcaption class="slot-label">[AeroGuard gallery — drop cleared photos into assets/]</figcaption>
         </figure>
       </section>
@@ -500,9 +504,7 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
       </div>
       <section class="gallery-wrap reveal"><p class="lbl">Gallery</p>
         <figure class="gallery media-slot" data-lightbox data-label="Shock-tester gallery">
-          <img class="slot-media" src="assets/shocktester-g1.jpg" alt="Shock-tester photo" loading="lazy">
-          <img class="slot-media" src="assets/shocktester-g2.jpg" alt="Shock-tester photo" loading="lazy">
-          <img class="slot-media" src="assets/shocktester-g3.jpg" alt="Shock-tester photo" loading="lazy">
+          <img class="slot-media" src="assets/shocktester-lead.jpg" alt="Shock-test stand" loading="lazy">
           <figcaption class="slot-label">[Shock-tester gallery — drop photos into assets/]</figcaption>
         </figure>
       </section>
@@ -513,7 +515,7 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
     <div class="wrap">
       <p class="proj-tag reveal">SCI Technology · Co-op</p>
       <h3 class="proj-title reveal">Subscale testbed drone</h3>
-      <p class="one-line reveal">Redesigned, built, and tested the team's testbed drone, Subscale, to add fiber-optic capability and a camera.</p>
+      <p class="one-line reveal">Designed, built, and tested the team's testbed drone, Subscale, to add fiber-optic capability and a camera.</p>
       <figure class="lead media-slot reveal" data-lightbox data-label="Subscale testbed drone">
         <img class="slot-media" src="assets/subscale-lead.jpg" alt="Subscale testbed drone" loading="lazy">
         <figcaption class="slot-label">[Subscale lead photo]</figcaption>
@@ -529,9 +531,15 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
         </aside>
         <div class="proj-body">
           <section class="proj-block reveal"><p class="lbl">Problem</p><p>The team's testbed drone, Subscale, needed to carry more — fiber-optic capability and a camera — while still flying and testing reliably.</p></section>
-          <section class="proj-block reveal"><p class="lbl">What I did</p><p>I helped redesign, build, and test Subscale to add fiber-optic capability and a camera, integrating the new hardware and flying it to confirm everything worked together.</p></section>
+          <section class="proj-block reveal"><p class="lbl">What I did</p><p>I helped design, build, and test Subscale to add fiber-optic capability and a camera, integrating the new hardware and flying it to confirm everything worked together.</p></section>
         </div>
       </div>
+      <section class="gallery-wrap reveal"><p class="lbl">Gallery</p>
+        <figure class="gallery media-slot" data-lightbox data-label="Subscale gallery">
+          <img class="slot-media" src="assets/subscale-lead.jpg" alt="Subscale testbed drone" loading="lazy">
+          <figcaption class="slot-label">[Subscale gallery — drop photos into assets/]</figcaption>
+        </figure>
+      </section>
     </div>
   </article>
 
@@ -587,14 +595,22 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
       </div>
       <section class="gallery-wrap reveal"><p class="lbl">Gallery</p>
         <figure class="gallery media-slot" data-lightbox data-label="SUAS airframe gallery">
+          <img class="slot-media" src="assets/suas-step1.jpg" alt="Roughing the MDF mold" loading="lazy">
           <img class="slot-media" src="assets/suas-g1.jpg" alt="Vacuum-sealing a wing composite layup" loading="lazy">
+          <img class="slot-media" src="assets/suas-step2.jpg" alt="Wet-laying the carbon-fiber wing" loading="lazy">
+          <img class="slot-media" src="assets/suas-g2.jpg" alt="Wing rib assembly" loading="lazy">
           <img class="slot-media" src="assets/suas-g3.jpg" alt="Fuselage layup vacuum sealing" loading="lazy">
+          <img class="slot-media" src="assets/suas-g4.jpg" alt="Fuselage composite layup" loading="lazy">
           <img class="slot-media" src="assets/suas-g5.jpg" alt="Cutting excess composite edges" loading="lazy">
           <img class="slot-media" src="assets/suas-g6.jpg" alt="Fuselage shell after layup" loading="lazy">
           <img class="slot-media" src="assets/suas-g7.jpg" alt="Wing after gluing the internal structure" loading="lazy">
+          <img class="slot-media" src="assets/suas-g8.jpg" alt="Finished airframe shell" loading="lazy">
           <img class="slot-media" src="assets/suas-g9.jpg" alt="Adding the flight controller and compass" loading="lazy">
           <img class="slot-media" src="assets/suas-g10.jpg" alt="Installed control surfaces" loading="lazy">
+          <video class="slot-media" muted loop playsinline preload="metadata" poster="assets/suas-boot.jpg"><source src="assets/suas-boot.mp4" type="video/mp4"></video>
           <img class="slot-media" src="assets/suas-step3.jpg" alt="Ready for the first flight test" loading="lazy">
+          <video class="slot-media" muted loop playsinline preload="metadata" poster="assets/suas-lead.jpg"><source src="assets/suas-step3.mp4" type="video/mp4"></video>
+          <img class="slot-media" src="assets/suas-lead.jpg" alt="UAS in the air" loading="lazy">
           <figcaption class="slot-label">[SUAS gallery — drop photos into assets/]</figcaption>
         </figure>
       </section>
@@ -605,7 +621,7 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
     <div class="wrap">
       <p class="proj-tag reveal">Auburn VSDDL</p>
       <h3 class="proj-title reveal">CNC hot-wire foam cutter</h3>
-      <p class="one-line reveal">A rebuilt CNC hot-wire cutter that makes the lab's wing and fuselage cores — bigger and more reliably.</p>
+      <p class="one-line reveal">A CNC hot-wire cutter I designed and built to make the lab's wing and fuselage cores — bigger and more reliably.</p>
       <figure class="lead media-slot reveal" data-lightbox data-label="Foam-cutter lead photo">
         <img class="slot-media" src="assets/foamcutter-lead.jpg" alt="CNC hot-wire foam cutter" loading="lazy">
         <figcaption class="slot-label">[Foam-cutter lead photo]</figcaption>
@@ -644,7 +660,7 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
                 </div>
               </div>
               <div class="steps">
-                <div class="step on" data-i="0"><span class="n">Design</span><h3>Redesign the frame</h3><p>Started from an open-source design and reworked the specs to enlarge the cutting envelope, then built the MDF frame on table, miter, and band saws.</p></div>
+                <div class="step on" data-i="0"><span class="n">Design</span><h3>Design the frame</h3><p>Designed the frame from an open-source baseline, enlarging the cutting envelope, then built the MDF frame on table, miter, and band saws.</p></div>
                 <div class="step" data-i="1"><span class="n">Electronics</span><h3>Motion-control electronics</h3><p>Laid out and built the motion-control electronics that drive the hot wire.</p></div>
                 <div class="step" data-i="2"><span class="n">Power</span><h3>Board &amp; power mounting</h3><p>Mounted the control board and power supply, with 3D-printed mounts that line the heat sinks up with the cooling fan.</p></div>
                 <div class="step" data-i="3"><span class="n">Wire</span><h3>Wire it up</h3><p>Built every harness and wired the system together. <em>(Wiring diagram to come.)</em></p></div>
@@ -663,8 +679,14 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
       </div>
       <section class="gallery-wrap reveal"><p class="lbl">Gallery</p>
         <figure class="gallery media-slot" data-lightbox data-label="Foam-cutter gallery">
+          <img class="slot-media" src="assets/foamcutter-render.png" alt="CAD render of the foam cutter" loading="lazy">
           <img class="slot-media" src="assets/foamcutter-g1.jpg" alt="CAD of the foam cutter" loading="lazy">
           <img class="slot-media" src="assets/foamcutter-g2.jpg" alt="CAD of the foam cutter" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-g3.jpg" alt="Initial motion-control electronics" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-g4.jpg" alt="Board and power-supply mounting" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-wiring.jpg" alt="Wiring and assembled electronics" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-g5.jpg" alt="Mechanical assembly" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-lead.jpg" alt="The finished foam cutter" loading="lazy">
           <figcaption class="slot-label">[Foam-cutter gallery — drop photos into assets/]</figcaption>
         </figure>
       </section>
@@ -913,10 +935,19 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
         m.addEventListener('error', function(){ m.remove(); });
       } else if(m.tagName === 'VIDEO'){
         m.addEventListener('loadeddata', function(){ mark(m); });
+        m.addEventListener('loadedmetadata', function(){ mark(m); });   /* reliable for poster thumbnails */
         m.addEventListener('error', function(){ m.remove(); });
         if(reduce){ m.removeAttribute('autoplay'); try{ m.pause(); }catch(e){} }
       }
     });
+  });
+
+  /* feed each story-stage layer a blurred backdrop of its own photo (video layers use the poster) */
+  [].slice.call(document.querySelectorAll('.stage .layer.media-slot')).forEach(function(layer){
+    var m = layer.querySelector('.slot-media');
+    if(!m) return;
+    var url = m.tagName === 'VIDEO' ? m.getAttribute('poster') : m.getAttribute('src');
+    if(url) layer.style.setProperty('--bg', "url('" + url + "')");
   });
 
   /* lightbox for image slots; arrow keys move through all loaded images in the slot */
@@ -940,6 +971,7 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
 
     [].slice.call(document.querySelectorAll('.media-slot[data-lightbox]')).forEach(function(slot){
       var act = function(e){
+        if(e && e.target && e.target.tagName === 'VIDEO'){ var vt = e.target; if(vt.paused) vt.play(); else vt.pause(); return; }
         var cover = slot.querySelector('.slot-media.cover');
         if(cover && cover.tagName === 'VIDEO'){ if(cover.paused) cover.play(); else cover.pause(); return; }
         var all = [].slice.call(slot.querySelectorAll('img.slot-media')).filter(function(m){ return m.naturalWidth > 0; });
