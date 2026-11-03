@@ -31,6 +31,10 @@ photo**, three **build-story steps**, and a **gallery** (any number of files →
 |---|---|
 | Full-width flight-testing band | `flightline.mp4` and/or `flightline.jpg` |
 | Résumé (enables the Download button) | `griffin-collier-resume.pdf` |
+| Social-share preview image *(optional, 1200×630)* | `og-image.jpg` — then uncomment the `og:image`/`twitter:image` lines in `index.html` and set `twitter:card` to `summary_large_image` |
+
+The browser-tab icon is `favicon.svg` (a "GC" monogram). Social-share preview title/description
+are already set via Open Graph tags in `index.html`.
 
 Tips:
 - Lead photos read best at ~16:8; gallery thumbs crop to a grid; the foam-cutter render is a PNG.
