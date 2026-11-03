@@ -114,14 +114,25 @@ nav .links a:hover{color:var(--fg)}
 }
 
 /* skills */
-.skills{position:relative; display:grid; grid-template-columns:repeat(auto-fit, minmax(210px,1fr)); gap:40px 0; margin-top:56px; list-style:none; padding:0}
-.skill-group{min-width:0; position:relative; border-top:2px solid var(--line); padding:28px 24px 0 0}
-.skill-group::before{content:""; position:absolute; top:-7px; left:0; width:12px; height:12px; border-radius:50%; background:var(--accent)}
-.skill-step{font-size:14px; font-weight:500; color:var(--accent); font-variant-numeric:tabular-nums}
-.skill-group h3{font-size:24px; font-weight:600; letter-spacing:-.02em; margin:2px 0 16px}
-.skills .chips li{font-size:14px}
-.skills::after{content:""; position:absolute; top:0; left:0; right:0; height:2px; background:var(--accent); transform-origin:left; pointer-events:none}
-@media (max-width:1100px){.skills::after{display:none}}
+/* horizontal scroll rail (Apple-style) */
+.skills-rail{position:relative; margin-top:48px}
+.skills{display:flex; gap:22px; margin:0; padding:6px 2px 12px; list-style:none; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; scrollbar-width:none; -webkit-overflow-scrolling:touch; cursor:grab; overscroll-behavior-x:contain}
+.skills::-webkit-scrollbar{display:none}
+.skills.dragging{cursor:grabbing; scroll-snap-type:none; scroll-behavior:auto; user-select:none}
+.skill-group{scroll-snap-align:start; flex:0 0 clamp(256px, 80vw, 336px); align-self:flex-start; background:var(--surface); border-radius:24px; padding:30px 28px; transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover){.skill-group:hover{transform:translateY(-4px)}}
+.skill-step{font-family:var(--mono); font-size:13px; font-weight:500; color:var(--accent); font-variant-numeric:tabular-nums}
+.skill-group h3{font-size:25px; font-weight:600; letter-spacing:-.02em; margin:6px 0 20px}
+.skills .chips{gap:8px}
+.skills .chips li{font-size:14px; background:var(--bg)}
+.rail-nav{display:flex; align-items:center; gap:22px; margin-top:22px}
+.rail-track{flex:1; height:3px; border-radius:3px; background:var(--line); position:relative; overflow:hidden}
+.rail-fill{position:absolute; top:0; left:0; height:100%; border-radius:3px; background:var(--accent); width:30%}
+.rail-arrows{display:flex; gap:10px}
+.rail-btn{width:46px; height:46px; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--fg); font-size:22px; line-height:1; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; transition:background .2s, opacity .2s}
+.rail-btn:hover{background:var(--surface)}
+.rail-btn:disabled{opacity:.3; cursor:default}
+@media (hover:none){.rail-arrows{display:none}}
 .creds{display:flex; flex-wrap:wrap; align-items:center; gap:10px 12px; margin-top:48px; padding-top:24px; border-top:1px solid var(--line)}
 .creds strong{font-weight:600; margin-right:4px}
 .chips{display:flex; flex-wrap:wrap; gap:8px; list-style:none; margin:0; padding:0}
@@ -802,14 +813,20 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
   <div class="wrap">
     <h2 class="reveal">Skills</h2>
     <p class="sub reveal">Organized the way an aircraft comes together, from first sketch to flight.</p>
-    <ol class="skills">
+    <div class="skills-rail">
+      <ol class="skills" id="skillsTrack">
       <li class="skill-group reveal"><span class="skill-step">01</span><h3>Design</h3><ul class="chips"><li>Siemens NX</li><li>SolidWorks</li><li>SolidWorks PDM</li><li>Motion analysis</li><li>GD&amp;T drawings</li><li>Design for manufacturing</li><li>Aerospace design</li><li>Counter-UAS systems</li></ul></li>
       <li class="skill-group reveal"><span class="skill-step">02</span><h3>Analyze</h3><ul class="chips"><li>FEA (MSC Nastran, ANSYS Mechanical)</li><li>MSC Apex</li><li>SolidWorks Simulation</li><li>CFD (FloEFD)</li><li>Stability and control</li><li>Flight simulation</li><li>Vehicle analysis</li><li>Thermodynamics</li></ul></li>
       <li class="skill-group reveal"><span class="skill-step">03</span><h3>Manufacture</h3><ul class="chips"><li>Carbon fiber layup</li><li>Mold making</li><li>FDM and SLA printing</li><li>Formlabs PreForm</li><li>Ultimaker Cura</li><li>SolidWorks CAM</li><li>Waterjet cutting</li><li>CNC milling</li><li>CNC gantry router</li><li>G-code</li><li>Manual mill and lathe</li><li>Hot-wire foam cutting</li></ul></li>
       <li class="skill-group reveal"><span class="skill-step">04</span><h3>Integrate</h3><ul class="chips"><li>Wire harnesses</li><li>Soldering and crimping</li><li>Battery packs</li><li>Motors and ESCs</li><li>Stepper motion control</li></ul></li>
       <li class="skill-group reveal"><span class="skill-step">05</span><h3>Code &amp; Test</h3><ul class="chips"><li>Hardware testing</li><li>Flight testing</li><li>RC piloting</li><li>Design iteration</li><li>Agile / Scrum</li><li>Technical writing</li><li>Python</li><li>MATLAB</li><li>C / C++</li><li>Java</li><li>JavaScript</li><li>R</li><li>PowerShell</li></ul></li>
-    </ol>
-    <div class="creds reveal"><strong>AI &amp; tools</strong><ul class="chips"><li>Artificial intelligence</li><li>Claude Code</li><li>ChatGPT</li><li>OpenAI Codex</li><li>GitHub</li><li>Vercel</li></ul></div>
+      <li class="skill-group reveal"><span class="skill-step">06</span><h3>AI &amp; tools</h3><ul class="chips"><li>Artificial intelligence</li><li>Claude Code</li><li>ChatGPT</li><li>OpenAI Codex</li><li>GitHub</li><li>Vercel</li></ul></li>
+      </ol>
+      <div class="rail-nav">
+        <div class="rail-track"><span class="rail-fill"></span></div>
+        <div class="rail-arrows"><button class="rail-btn" type="button" data-dir="-1" aria-label="Scroll skills left">&lsaquo;</button><button class="rail-btn" type="button" data-dir="1" aria-label="Scroll skills right">&rsaquo;</button></div>
+      </div>
+    </div>
     <div class="creds reveal"><strong>Credentials</strong><ul class="chips"><li>FAA Part 107 Remote Pilot</li><li>U.S. Citizen</li></ul></div>
   </div>
 </section>
@@ -1099,6 +1116,69 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
     window.addEventListener('scroll', function(){ if(!q){ q = true; requestAnimationFrame(function(){ q = false; onScroll(); }); } }, {passive:true});
     onScroll();
   }
+})();
+
+/* Skills horizontal rail: progress thumb, arrow buttons, mouse drag-to-scroll */
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var track = document.getElementById('skillsTrack');
+  if(!track) return;
+  var rail = track.closest('.skills-rail');
+  var fill = rail.querySelector('.rail-fill');
+  var btns = [].slice.call(rail.querySelectorAll('.rail-btn'));
+  var behavior = reduce ? 'auto' : 'smooth';
+
+  var maxScroll = function(){ return track.scrollWidth - track.clientWidth; };
+  var raf = false;
+  var update = function(){
+    raf = false;
+    var max = maxScroll(), view = track.clientWidth / track.scrollWidth;
+    var p = max > 0 ? track.scrollLeft / max : 0;
+    if(fill){ fill.style.width = (view * 100).toFixed(2) + '%'; fill.style.left = (p * (100 - view * 100)).toFixed(2) + '%'; }
+    btns.forEach(function(b){
+      var dir = +b.getAttribute('data-dir');
+      b.disabled = max <= 0 || (dir < 0 && track.scrollLeft <= 4) || (dir > 0 && track.scrollLeft >= max - 4);
+    });
+  };
+  track.addEventListener('scroll', function(){ if(!raf){ raf = true; requestAnimationFrame(update); } }, {passive:true});
+
+  var cardStep = function(){
+    var card = track.querySelector('.skill-group');
+    var gap = parseFloat(getComputedStyle(track).gap) || 22;
+    return card ? card.getBoundingClientRect().width + gap : track.clientWidth * 0.8;
+  };
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){ track.scrollBy({left: (+b.getAttribute('data-dir')) * cardStep(), behavior: behavior}); });
+  });
+
+  /* mouse drag-to-scroll (touch/trackpad use native scrolling) */
+  var down = false, startX = 0, startLeft = 0, moved = 0;
+  track.addEventListener('pointerdown', function(e){
+    if(e.pointerType !== 'mouse' || e.button !== 0) return;
+    down = true; moved = 0; startX = e.clientX; startLeft = track.scrollLeft;
+    track.classList.add('dragging');
+    try{ track.setPointerCapture(e.pointerId); }catch(_){}
+  });
+  track.addEventListener('pointermove', function(e){
+    if(!down) return;
+    var dx = e.clientX - startX; moved = Math.abs(dx);
+    track.scrollLeft = startLeft - dx;
+  });
+  var endDrag = function(){ if(down){ down = false; track.classList.remove('dragging'); } };
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointercancel', endDrag);
+  track.addEventListener('click', function(e){ if(moved > 6){ e.preventDefault(); e.stopPropagation(); } }, true);
+
+  track.setAttribute('tabindex', '0');
+  track.setAttribute('aria-label', 'Skills, scroll horizontally');
+  track.addEventListener('keydown', function(e){
+    if(e.key === 'ArrowRight'){ e.preventDefault(); track.scrollBy({left: cardStep(), behavior: behavior}); }
+    else if(e.key === 'ArrowLeft'){ e.preventDefault(); track.scrollBy({left: -cardStep(), behavior: behavior}); }
+  });
+
+  window.addEventListener('resize', update);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(update);
+  update();
 })();
 </script>
 </body>
