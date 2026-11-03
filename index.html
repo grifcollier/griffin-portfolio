@@ -133,6 +133,17 @@ nav .links a:hover{color:var(--fg)}
 .rail-btn:hover{background:var(--surface)}
 .rail-btn:disabled{opacity:.3; cursor:default}
 @media (hover:none){.rail-arrows{display:none}}
+
+/* floating "Get in touch" button — fixed, visible at every scroll position */
+.contact-fab{position:fixed; z-index:6; right:max(18px, env(safe-area-inset-right,0px)); bottom:max(18px, env(safe-area-inset-bottom,0px)); display:inline-flex; align-items:center; height:54px; width:54px; border-radius:999px; background:var(--accent); color:#fff; text-decoration:none; box-shadow:0 10px 26px rgba(0,0,0,.3); overflow:hidden; transition:width .35s cubic-bezier(.2,.7,.2,1), transform .35s cubic-bezier(.2,.7,.2,1), opacity .3s}
+.contact-fab svg{flex:0 0 54px; width:54px; height:54px; padding:16px}
+.contact-fab .fab-text{white-space:nowrap; font-size:15px; font-weight:600; padding-right:22px; opacity:0; transition:opacity .25s}
+@media (hover:hover){.contact-fab:hover,.contact-fab:focus-visible{width:190px} .contact-fab:hover .fab-text,.contact-fab:focus-visible .fab-text{opacity:1}}
+.contact-fab:focus-visible{outline:2px solid var(--fg); outline-offset:3px}
+.contact-fab.hide{opacity:0; transform:translateY(14px) scale(.85); pointer-events:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .contact-fab{color:#0B0C0D}}
+:root[data-theme="dark"] .contact-fab{color:#0B0C0D}
+:root[data-theme="light"] .contact-fab{color:#fff}
 .creds{display:flex; flex-wrap:wrap; align-items:center; gap:10px 12px; margin-top:48px; padding-top:24px; border-top:1px solid var(--line)}
 .creds strong{font-weight:600; margin-right:4px}
 .chips{display:flex; flex-wrap:wrap; gap:8px; list-style:none; margin:0; padding:0}
@@ -843,6 +854,11 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
   </div>
 </footer>
 
+<a class="contact-fab" href="#contact" aria-label="Get in touch">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7.5 9 6 9-6"/></svg>
+  <span class="fab-text">Get in touch</span>
+</a>
+
 <dialog id="lightbox" class="lightbox" aria-label="Image viewer">
   <button class="lb-btn lb-close" type="button" aria-label="Close">&times;</button>
   <button class="lb-btn lb-prev" type="button" aria-label="Previous image">&lsaquo;</button>
@@ -1179,6 +1195,15 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
   window.addEventListener('resize', update);
   if(document.fonts && document.fonts.ready) document.fonts.ready.then(update);
   update();
+})();
+
+/* hide the floating contact button when the contact section is on screen */
+(function(){
+  var fab = document.querySelector('.contact-fab'), contact = document.getElementById('contact');
+  if(!fab || !contact || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ fab.classList.toggle('hide', e.isIntersecting); });
+  }, {rootMargin:'0px 0px -15% 0px'}).observe(contact);
 })();
 </script>
 </body>
