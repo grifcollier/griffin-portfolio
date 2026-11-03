@@ -230,13 +230,79 @@ nav .links a.active::after{content:""; position:absolute; left:0; right:0; botto
 .js-anim .reveal.in{opacity:1; transform:none}
 .js-anim .media{opacity:0; transition:opacity .8s ease}
 .js-anim .media.in{opacity:1}
+
+/* ---------- origin strip (childhood builds) ---------- */
+.origin-strip{display:flex; flex-wrap:wrap; gap:18px; margin-top:44px}
+.origin-item{flex:1 1 200px; max-width:300px; margin:0}
+.origin-shot{aspect-ratio:4/3; border-radius:16px; background:var(--surface); display:flex; align-items:center; justify-content:center; text-align:center; padding:18px; font-family:var(--mono); font-size:12px; color:var(--muted)}
+.origin-cap{font-family:var(--mono); font-size:12px; letter-spacing:.03em; color:var(--muted); margin-top:10px; text-align:center}
+
+/* ---------- project cards (large, lead-image) ---------- */
+.proj-cards{display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:22px; margin-top:56px; perspective:1000px}
+a.proj-card{position:relative; text-decoration:none; color:inherit; background:var(--surface); border-radius:22px; overflow:hidden; display:flex; flex-direction:column; --lift:0px; translate:0 var(--lift); transition:translate .4s cubic-bezier(.2,.7,.2,1), rotate .4s cubic-bezier(.2,.7,.2,1)}
+a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; opacity:0; transition:opacity .3s; background:radial-gradient(360px circle at var(--mx,50%) var(--my,50%), color-mix(in srgb, var(--accent) 18%, transparent), transparent 70%)}
+@media (hover:hover){a.proj-card:hover{--lift:-6px} a.proj-card:hover::after{opacity:1}}
+.proj-card .thumb{aspect-ratio:16/10; border-radius:0}
+.proj-card .pc-body{padding:22px 24px 26px; display:flex; flex-direction:column; gap:8px}
+.proj-card .tag{font-size:13px; font-weight:500; color:var(--muted)}
+.proj-card h3{font-size:22px; font-weight:600; letter-spacing:-.02em}
+.proj-card p{margin:0; color:var(--muted); font-size:15px}
+.proj-card .more{margin-top:6px; font-size:14px; font-weight:500; color:var(--accent)}
+.proj-card .flag{align-self:flex-start; font-family:var(--mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--accent); border:1px solid var(--line); border-radius:999px; padding:3px 10px}
+
+/* ---------- project in-depth block (6-part template) ---------- */
+.project{padding-block:84px; border-top:1px solid var(--line); scroll-margin-top:calc(env(safe-area-inset-top,0px) + 60px)}
+.project .proj-tag{font-family:var(--mono); font-size:13px; letter-spacing:.04em; color:var(--accent); margin:0 0 10px}
+.project .proj-title{font-size:clamp(28px,3.4vw,42px); font-weight:600; letter-spacing:-.025em; max-width:800px}
+.project .one-line{max-width:620px; color:var(--muted); font-size:20px; margin:14px 0 0}
+.project .lead{margin-top:32px; aspect-ratio:16/8; border-radius:24px; background:var(--surface); display:flex; align-items:center; justify-content:center; text-align:center; padding:24px; font-family:var(--mono); font-size:13px; color:var(--muted)}
+.proj-grid{display:grid; grid-template-columns:272px minmax(0,1fr); gap:48px; margin-top:48px}
+.proj-aside{align-self:start; position:sticky; top:calc(env(safe-area-inset-top,0px) + 76px)}
+.spec{margin:0 0 20px; display:flex; flex-direction:column; gap:14px}
+.spec div{display:flex; flex-direction:column; gap:3px}
+.spec dt{font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted)}
+.spec dd{margin:0; font-size:15px; font-weight:500}
+.proj-body{min-width:0; display:flex; flex-direction:column; gap:44px}
+.proj-block .lbl,.gallery-wrap .lbl{font-family:var(--mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin:0 0 14px}
+.proj-block p{margin:0; color:var(--muted); max-width:620px}
+.proj-block .story{margin-top:8px}
+.results{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:14px}
+.results li{background:var(--surface); border-radius:16px; padding:16px 20px; min-width:140px}
+.results .num{display:block; font-size:28px; font-weight:600; letter-spacing:-.02em; font-variant-numeric:tabular-nums}
+.results .cap{font-size:14px; color:var(--muted)}
+.gallery-wrap{margin-top:44px}
+
+/* ---------- gallery media variant (all loaded thumbs visible) ---------- */
+.gallery{display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:10px; border-radius:16px; overflow:visible}
+.gallery:not(.has-media){background:var(--surface); min-height:150px; place-items:center; padding:24px}
+.gallery .slot-media{position:static; inset:auto; width:100%; height:150px; object-fit:cover; border-radius:12px; opacity:0; transition:opacity .5s ease, transform .3s ease}
+.gallery .slot-media.shown{opacity:1}
+.gallery.has-media{cursor:zoom-in}
+.gallery .slot-label{grid-column:1/-1; font-family:var(--mono); font-size:13px; color:var(--muted); text-align:center}
+.gallery.has-media .slot-label{display:none}
+@media (hover:hover){.gallery .slot-media.shown:hover{transform:scale(1.03)}}
+
+@media (max-width:860px){
+  .proj-grid{grid-template-columns:minmax(0,1fr); gap:32px}
+  .proj-aside{position:static}
+}
+
+/* project-card thumb placeholder (when no lead image yet) */
+.proj-card .thumb{background:var(--surface); display:flex; align-items:center; justify-content:center; text-align:center; padding:16px; font-family:var(--mono); font-size:12px; color:var(--muted)}
+/* keep per-project build stories shorter than the standalone one so the page stays tight */
+.project .stage{aspect-ratio:16/10}
+.project .step{min-height:54vh}
+/* "See project →" links in the experience timeline */
+.tl-links{margin-top:10px}
+.tl-link{display:inline-block; margin:0 16px 4px 0; font-size:14px; font-weight:500; color:var(--accent); text-decoration:none}
+.tl-link:hover{text-decoration:underline}
 </style>
 </head>
 <body>
 <nav aria-label="Primary">
   <div class="wrap">
     <a class="brand" href="#top" style="text-decoration:none; font-weight:600">Griffin Collier</a>
-    <div class="links"><a href="#work">Experience</a><a href="#path">Timeline</a><a href="#skills">Skills</a><a href="#build">Projects</a><a href="#contact">Contact</a></div>
+    <div class="links"><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a></div>
   </div>
 </nav>
 
@@ -245,106 +311,372 @@ nav .links a.active::after{content:""; position:absolute; left:0; right:0; botto
   <h1>Griffin Collier</h1>
   <p class="lede">Mechanical engineering senior at Auburn University, graduating May 2027, with two years of experience in autonomous aerial systems and counter-UAS technology. I work across CAD, composite and additive manufacturing, and fabrication, with working knowledge of electronics, CFD, FEA, and motion analysis.</p>
   <ul class="edu">
-    <li>B.M.E., Minor in Finance</li>
+    <li>Bachelor of Mechanical Engineering, minor in Finance</li>
     <li>GPA 3.77</li>
     <li>Dean's List</li>
     <li>Pi Tau Sigma</li>
   </ul>
-  <div class="cta"><a class="btn primary" href="#work">See the work</a><a class="btn ghost" href="#contact">Get in touch</a><a class="btn ghost" href="assets/griffin-collier-resume.pdf" download>Download résumé</a></div>
+  <div class="cta"><a class="btn primary" href="#projects">See the work</a><a class="btn ghost" href="#contact">Get in touch</a><a class="btn ghost" href="assets/griffin-collier-resume.pdf" download>Download résumé</a></div>
 </header>
 
 <section class="section statement">
   <div class="wrap">
-    <p id="statement">At eleven, I designed a barge with a conveyor to pull drifting logs out of my grandmother's lake. I've been building things that solve real problems ever since. Today that means unmanned aircraft: counter-drone hardware, research airframes, and the tools to build them.</p>
+    <p id="statement">I built a Tinker Toy Ferris wheel at six and a K'nex bridge at seven. At eleven, I designed a barge with a conveyor to pull drifting logs out of my grandmother's lake. I've been building things that solve real problems ever since. Today that means unmanned aircraft: counter-drone hardware, research airframes, and the tools to build them.</p>
+    <div class="origin-strip reveal">
+      <figure class="origin-item">
+        <div class="origin-shot media-slot" data-lightbox data-label="Tinker Toy Ferris wheel, age 6">
+          <img class="slot-media" src="assets/origin-6.jpg" alt="Ferris wheel built from Tinker Toys, age 6" loading="lazy">
+          <span class="slot-label">[Photo: Ferris wheel, age 6]</span>
+        </div>
+        <figcaption class="origin-cap">Ferris wheel · Tinker Toys · age 6</figcaption>
+      </figure>
+      <figure class="origin-item">
+        <div class="origin-shot media-slot" data-lightbox data-label="K'nex bridge, age 7">
+          <img class="slot-media" src="assets/origin-7.jpg" alt="Bridge built from K'nex, age 7" loading="lazy">
+          <span class="slot-label">[Photo: K'nex bridge, age 7]</span>
+        </div>
+        <figcaption class="origin-cap">Bridge · K'nex · age 7</figcaption>
+      </figure>
+      <!-- No childhood barge photo yet; remove `hidden` to show it if one turns up (drop assets/origin-barge.jpg). -->
+      <figure class="origin-item" hidden>
+        <div class="origin-shot media-slot" data-lightbox data-label="Log barge, age 11">
+          <img class="slot-media" src="assets/origin-barge.jpg" alt="Log-pulling barge, age 11" loading="lazy">
+          <span class="slot-label">[Photo: log barge, age 11]</span>
+        </div>
+        <figcaption class="origin-cap">Log barge · age 11</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
-<section id="work" class="section">
+<section id="experience" class="section">
   <div class="wrap">
     <h2 class="reveal">Experience</h2>
-    <div class="cards">
-      <a class="card reveal" href="#exp-aeroguard"><span class="tag">SCI Technology · Co-op</span><h3>AeroGuard</h3><p>Hardware design, analysis, and flight test for an autonomous counter-drone system.</p><span class="more">Read more ↓</span></a>
-      <a class="card reveal" href="#exp-vsddl"><span class="tag">Auburn VSDDL · Researcher</span><h3>Subscale VTOL research</h3><p>Aircraft sizing, stability and control, and flight simulation for novel VTOL configurations.</p><span class="more">Read more ↓</span></a>
-      <a class="card reveal" href="#exp-purdue"><span class="tag">Purdue Aerial Robotics Team</span><h3>SUAS airframe</h3><p>Carbon fiber fuselage and wings for a competition UAV. 13th of 72 teams.</p><span class="more">Read more ↓</span></a>
-      <a class="card reveal" href="#exp-afrl"><span class="tag">Auburn Senior Design</span><h3>AFRL counter-UAS</h3><p>A man-portable counter-sUAS system for small tactical teams, post-PDR.</p><span class="more">Read more ↓</span></a>
-    </div>
-
-    <div class="details">
-      <article class="detail" id="exp-aeroguard">
-        <figure class="photo media-slot" data-lightbox data-label="AeroGuard photos">
-          <img class="slot-media" src="assets/aeroguard-1.jpg" alt="AeroGuard counter-drone hardware" loading="lazy">
-          <img class="slot-media" src="assets/aeroguard-2.jpg" alt="AeroGuard component or flight test" loading="lazy">
-          <figcaption class="slot-label">[AeroGuard photos, only if approved by SCI]</figcaption>
-        </figure>
-        <div class="body reveal">
-          <p class="meta">SCI Technology, Huntsville, AL · Mechanical Engineering Co-op (3 semesters) · Jan 2024 – Aug 2025</p>
-          <h3>AeroGuard counter-drone system</h3>
-          <p class="desc">Across a full year of co-op in three non-consecutive semesters, I worked full-time on a multidisciplinary team designing and building AeroGuard, a fully autonomous counter-drone system that rapidly neutralizes aerial threats. I designed and manufactured mission-critical, aerospace-grade hardware, validated it with FEA in MSC Nastran and CFD in FloEFD, and produced professional drawings applying GD&amp;T. I prototyped with waterjet cutting, machining, and 3D printing, built wire harnesses and battery packs, and integrated motors, ESCs, and other electrical components. Hardware and flight testing, vehicle analysis, and design iteration drove reliability and efficiency. Along the way I managed revisions in SolidWorks PDM, worked in Scrum sprints, and used AI tools to speed up engineering workflows and documentation.</p>
-          <ul class="chips"><li>SolidWorks</li><li>SolidWorks PDM</li><li>MSC Nastran</li><li>FloEFD</li><li>GD&amp;T</li><li>Waterjet</li><li>Machining</li><li>Flight testing</li><li>Scrum</li></ul>
-          <a class="back" href="#work">↑ Back to experience</a>
-        </div>
-      </article>
-      <article class="detail" id="exp-vsddl">
-        <figure class="photo media-slot" data-lightbox data-label="VSDDL lab and aircraft photos">
-          <img class="slot-media" src="assets/vsddl-1.jpg" alt="VSDDL lab work" loading="lazy">
-          <img class="slot-media" src="assets/vsddl-2.jpg" alt="Subscale research aircraft" loading="lazy">
-          <figcaption class="slot-label">[Lab and aircraft photos]</figcaption>
-        </figure>
-        <div class="body reveal">
-          <p class="meta">Auburn VSDDL · Undergraduate Researcher · Jun 2026 – Present</p>
-          <h3>Subscale VTOL research</h3>
-          <p class="desc">In Auburn's Vehicle Systems, Dynamics, and Design Lab, I spend 15+ hours a week on aircraft sizing and optimization, stability and control analysis, flight simulation, and subscale prototyping of novel VTOL configurations. I redesigned and built the lab's CNC hot-wire foam cutter (see Projects), engineering its motion-control electronics and mechanical hardware to increase cutting size and improve reliability. I also designed a custom crate to safely ship a 7-foot subscale research aircraft.</p>
-          <ul class="chips"><li>Aircraft sizing</li><li>Stability and control</li><li>Flight simulation</li><li>Subscale prototyping</li></ul>
-          <a class="back" href="#work">↑ Back to experience</a>
-        </div>
-      </article>
-      <article class="detail" id="exp-purdue">
-        <figure class="photo media-slot" data-lightbox data-label="Purdue airframe and layup photos">
-          <img class="slot-media" src="assets/purdue-1.jpg" alt="Carbon fiber airframe" loading="lazy">
-          <img class="slot-media" src="assets/purdue-2.jpg" alt="Carbon fiber wet layup" loading="lazy">
-          <figcaption class="slot-label">[Airframe and layup photos]</figcaption>
-        </figure>
-        <div class="body reveal">
-          <p class="meta">Purdue Aerial Robotics Team, Purdue University · Airframe Team Member · Aug 2022 – May 2023</p>
-          <h3>AUVSI-SUAS competition airframe</h3>
-          <p class="desc">I helped design and manufacture an autonomous UAV for the AUVSI-SUAS Competition, built for surveillance, search and rescue, and payload delivery. Over 200 hours, I modeled the aircraft in Siemens NX, made MDF molds, wet-laid carbon fiber for the fuselage and wings, and bonded the foam and plywood internal structure. I also picked up shop experience on the Dremel, drill press, oscillating multi-tool, belt sander, and scroll saw. The team placed 13th overall out of 72.</p>
-          <ul class="chips"><li>Siemens NX</li><li>Mold making</li><li>Carbon fiber wet layup</li><li>Shop fabrication</li></ul>
-          <a class="back" href="#work">↑ Back to experience</a>
-        </div>
-      </article>
-      <article class="detail" id="exp-afrl">
-        <figure class="photo media-slot" data-lightbox data-label="AFRL concept renders">
-          <img class="slot-media" src="assets/afrl-1.jpg" alt="AFRL counter-UAS concept render" loading="lazy">
-          <figcaption class="slot-label">[Concept renders, when cleared]</figcaption>
-        </figure>
-        <div class="body reveal">
-          <p class="meta">Auburn Senior Design · Aug 2026 – Present</p>
-          <h3>AFRL counter-UAS challenge</h3>
-          <p class="desc">Our team is developing a man-portable counter-sUAS system for the Air Force Research Laboratory to protect small tactical teams from Group 1 drone threats. Working with subject-matter experts, we defined a lightweight scouting and surveillance mission, and I co-authored our 80-page Preliminary Design Review evaluating three concepts across the detect, identify, track, and neutralize kill chain. In progress.</p>
-          <ul class="chips"><li>Systems design</li><li>Concept trade studies</li><li>Design reviews</li><li>Technical writing</li></ul>
-          <a class="back" href="#work">↑ Back to experience</a>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section id="path" class="section">
-  <div class="wrap">
-    <h2 class="reveal">Timeline</h2>
+    <p class="sub reveal">The path so far — roles, dates, and where each one shows up in the projects below.</p>
     <div class="tl">
       <span class="tl-fill" aria-hidden="true"></span>
       <ol class="timeline">
-        <li class="tl-item reveal"><span class="tl-year">2021</span><div><h3>Purdue University</h3><p>Mechanical engineering coursework, 59 credit hours.</p></div></li>
-        <li class="tl-item reveal"><span class="tl-year">2022–23</span><div><h3>Airframe Team Member, Purdue Aerial Robotics Team</h3><p>Joined the airframe team and built carbon fiber structures for a competition UAV. Toured Airbus Hamburg and the Farnborough Air Show on a study abroad.</p></div></li>
-        <li class="tl-item reveal"><span class="tl-year">2023</span><div><h3>Transferred to Auburn University</h3><p>Bachelor of Mechanical Engineering with a minor in finance.</p></div></li>
-        <li class="tl-item reveal"><span class="tl-year">2024–25</span><div><h3>Mechanical Engineering Co-op, SCI Technology</h3><p>January 2024 through August 2025. Three rotations designing, building, and flight-testing AeroGuard, an autonomous counter-drone system.</p></div></li>
-        <li class="tl-item reveal"><span class="tl-year">2025</span><div><h3>Co-op &amp; Internship Ambassador, Auburn University</h3><p>With the Office of Career Development and Corporate Relations, mentored freshmen and sophomores through applying, onboarding, and accepting offers. Presented my co-op experience to student organizations and classes, and helped organize and run on-campus career fairs.</p></div></li>
-        <li class="tl-item reveal"><span class="tl-year">2026–Present</span><div><h3>Undergraduate Researcher, VSDDL</h3><p>Built the lab's CNC foam cutter, started VTOL research, and began the AFRL counter-UAS senior design project.</p></div></li>
-        <li class="tl-item next reveal"><span class="tl-year">2027</span><div><h3>B.M.E., expected May 2027</h3><p>Looking for a full-time aerospace or mechanical engineering role in UAS and defense.</p></div></li>
+        <li class="tl-item reveal"><span class="tl-year">2021</span><div><h3>Purdue University</h3><p>Began mechanical engineering coursework (59 credit hours).</p></div></li>
+        <li class="tl-item reveal"><span class="tl-year">2022–23</span><div><h3>Airframe Team Member · Purdue Aerial Robotics Team</h3><p>Built carbon-fiber structures for a competition UAV; toured Airbus Hamburg and the Farnborough Air Show on a study abroad.</p><p class="tl-links"><a class="tl-link" href="#proj-suas">See project: SUAS airframe →</a></p></div></li>
+        <li class="tl-item reveal"><span class="tl-year">2023</span><div><h3>Transferred to Auburn University</h3><p>Bachelor of Mechanical Engineering, minor in finance.</p></div></li>
+        <li class="tl-item reveal"><span class="tl-year">2024–25</span><div><h3>Mechanical Engineering Co-op · SCI Technology</h3><p>Three rotations (Jan 2024 – Aug 2025) designing, building, and flight-testing counter-drone hardware in Huntsville, AL.</p><p class="tl-links"><a class="tl-link" href="#proj-aeroguard">See: AeroGuard →</a><a class="tl-link" href="#proj-shocktester">See: Shock-test stand →</a><a class="tl-link" href="#proj-subscale">See: Subscale →</a></p></div></li>
+        <li class="tl-item reveal"><span class="tl-year">2025</span><div><h3>Co-op &amp; Internship Ambassador · Auburn University</h3><p>With Career Development &amp; Corporate Relations, mentored underclassmen through applying, onboarding, and accepting offers; presented to classes and helped run on-campus career fairs.</p></div></li>
+        <li class="tl-item reveal"><span class="tl-year">2026–Present</span><div><h3>Undergraduate Researcher · Auburn VSDDL</h3><p>Rebuilt the lab's CNC foam cutter and began the AFRL counter-UAS senior-design project.</p><p class="tl-links"><a class="tl-link" href="#proj-foamcutter">See: Foam cutter →</a><a class="tl-link" href="#proj-afrl">See: AFRL →</a></p></div></li>
+        <li class="tl-item next reveal"><span class="tl-year">2027</span><div><h3>Bachelor of Mechanical Engineering, expected May 2027</h3><p>Seeking a full-time aerospace or mechanical engineering role in UAS and defense.</p></div></li>
       </ol>
     </div>
   </div>
+</section>
+
+<section id="projects" class="section">
+  <div class="wrap">
+    <h2 class="reveal">Projects</h2>
+    <p class="sub reveal">The things I've designed, built, and tested — in depth. Start anywhere.</p>
+    <div class="proj-cards">
+      <a class="proj-card reveal" href="#proj-aeroguard">
+        <div class="thumb media-slot"><img class="slot-media" src="assets/aeroguard-lead.jpg" alt="AeroGuard counter-drone system" loading="lazy"><span class="slot-label">[AeroGuard lead photo]</span></div>
+        <div class="pc-body"><span class="tag">SCI Technology · Co-op</span><h3>AeroGuard</h3><p>A fully autonomous system that detects and neutralizes aerial threats.</p><span class="more">View project →</span></div>
+      </a>
+      <a class="proj-card reveal" href="#proj-shocktester">
+        <div class="thumb media-slot"><img class="slot-media" src="assets/shocktester-lead.jpg" alt="Shock-test stand" loading="lazy"><span class="slot-label">[Shock-tester lead photo]</span></div>
+        <div class="pc-body"><span class="tag">SCI Technology · Co-op</span><h3>Shock-test stand</h3><p>A test stand that recreates the shock the system saw in the field, to check it on the bench.</p><span class="more">View project →</span></div>
+      </a>
+      <a class="proj-card reveal" href="#proj-subscale">
+        <div class="thumb media-slot"><img class="slot-media" src="assets/subscale-lead.jpg" alt="Subscale testbed drone" loading="lazy"><span class="slot-label">[Subscale lead photo]</span></div>
+        <div class="pc-body"><span class="tag">SCI Technology · Co-op</span><h3>Subscale testbed drone</h3><p>Redesigned, built, and tested the team's testbed drone to add fiber-optic capability and a camera.</p><span class="more">View project →</span></div>
+      </a>
+      <a class="proj-card reveal" href="#proj-suas">
+        <div class="thumb media-slot"><img class="slot-media" src="assets/suas-lead.jpg" alt="Carbon-fiber SUAS airframe" loading="lazy"><span class="slot-label">[SUAS airframe lead photo]</span></div>
+        <div class="pc-body"><span class="tag">Purdue Aerial Robotics Team</span><h3>Carbon-fiber SUAS airframe</h3><p>Hand-built fuselage and wings for an autonomous competition UAV.</p><span class="more">View project →</span></div>
+      </a>
+      <a class="proj-card reveal" href="#proj-foamcutter">
+        <div class="thumb media-slot"><img class="slot-media" src="assets/foamcutter-lead.jpg" alt="CNC hot-wire foam cutter" loading="lazy"><span class="slot-label">[Foam-cutter lead photo]</span></div>
+        <div class="pc-body"><span class="tag">Auburn VSDDL</span><h3>CNC hot-wire foam cutter</h3><p>A rebuilt cutter that makes the lab's wing and fuselage cores.</p><span class="more">View project →</span></div>
+      </a>
+      <a class="proj-card reveal" href="#proj-afrl">
+        <div class="thumb media-slot"><img class="slot-media" src="assets/afrl-lead.jpg" alt="AFRL counter-UAS concept" loading="lazy"><span class="slot-label">[AFRL render, when cleared]</span></div>
+        <div class="pc-body"><span class="flag">In progress</span><span class="tag">Auburn Senior Design</span><h3>AFRL counter-UAS</h3><p>A man-portable counter-sUAS system to protect small tactical teams.</p><span class="more">View project →</span></div>
+      </a>
+    </div>
+  </div>
+
+  <article class="project" id="proj-aeroguard">
+    <div class="wrap">
+      <p class="proj-tag reveal">SCI Technology · Co-op</p>
+      <h3 class="proj-title reveal">AeroGuard counter-drone system</h3>
+      <p class="one-line reveal">A fully autonomous system that rapidly detects and neutralizes aerial threats.</p>
+      <figure class="lead media-slot reveal" data-lightbox data-label="AeroGuard lead photo">
+        <img class="slot-media" src="assets/aeroguard-lead.jpg" alt="AeroGuard counter-drone system" loading="lazy">
+        <figcaption class="slot-label">[AeroGuard lead photo]</figcaption>
+      </figure>
+      <div class="proj-grid">
+        <aside class="proj-aside reveal">
+          <dl class="spec">
+            <div><dt>Role</dt><dd>Mechanical Engineering Co-op</dd></div>
+            <div><dt>Context</dt><dd>SCI Technology · Huntsville, AL</dd></div>
+            <div><dt>Dates</dt><dd>Jan 2024 – Aug 2025</dd></div>
+          </dl>
+          <ul class="chips"><li>SolidWorks</li><li>FEA</li><li>CFD</li><li>GD&amp;T</li><li>Fabrication</li><li>Scrum</li></ul>
+        </aside>
+        <div class="proj-body">
+          <section class="proj-block reveal"><p class="lbl">Problem</p><p>A counter-drone system only works if its hardware is designed, built, and refined to hold up in the field.</p></section>
+          <section class="proj-block reveal"><p class="lbl">What I did</p><p>As a co-op on the AeroGuard team, I worked across the hardware — design and analysis, fabrication and integration, and hands-on iteration. A lot of the detail stays in-house, so this one is kept high-level.</p></section>
+          <section class="proj-block reveal"><p class="lbl">At a glance</p>
+            <ul class="results">
+              <li><span class="num">1 yr</span><span class="cap">full-year co-op · 3 semesters</span></li>
+              <li><span class="num">Hardware</span><span class="cap">design → build → integrate</span></li>
+            </ul>
+          </section>
+        </div>
+      </div>
+      <section class="gallery-wrap reveal"><p class="lbl">Gallery</p>
+        <figure class="gallery media-slot" data-lightbox data-label="AeroGuard gallery">
+          <img class="slot-media" src="assets/aeroguard-g1.jpg" alt="AeroGuard photo" loading="lazy">
+          <img class="slot-media" src="assets/aeroguard-g2.jpg" alt="AeroGuard photo" loading="lazy">
+          <img class="slot-media" src="assets/aeroguard-g3.jpg" alt="AeroGuard photo" loading="lazy">
+          <img class="slot-media" src="assets/aeroguard-g4.jpg" alt="AeroGuard photo" loading="lazy">
+          <figcaption class="slot-label">[AeroGuard gallery — drop cleared photos into assets/]</figcaption>
+        </figure>
+      </section>
+    </div>
+  </article>
+
+  <article class="project" id="proj-shocktester">
+    <div class="wrap">
+      <p class="proj-tag reveal">SCI Technology · Co-op</p>
+      <h3 class="proj-title reveal">Repeatable shock-test stand</h3>
+      <p class="one-line reveal">A test stand that recreates the shock the system saw in the field, so it could be checked on the bench instead of out on the range.</p>
+      <figure class="lead media-slot reveal" data-lightbox data-label="Shock-tester lead photo">
+        <img class="slot-media" src="assets/shocktester-lead.jpg" alt="Shock-test stand" loading="lazy">
+        <figcaption class="slot-label">[Shock-tester lead photo]</figcaption>
+      </figure>
+      <div class="proj-grid">
+        <aside class="proj-aside reveal">
+          <dl class="spec">
+            <div><dt>Role</dt><dd>Mechanical Engineering Co-op</dd></div>
+            <div><dt>Context</dt><dd>SCI Technology · Huntsville, AL</dd></div>
+            <div><dt>Dates</dt><dd>2024 – 2025</dd></div>
+          </dl>
+          <ul class="chips"><li>SolidWorks</li><li>Design for manufacturing</li><li>Fabrication</li></ul>
+        </aside>
+        <div class="proj-body">
+          <section class="proj-block reveal"><p class="lbl">Problem</p><p>Testing the system against repeated shock was slow when it meant going out and firing the drone each time.</p></section>
+          <section class="proj-block reveal"><p class="lbl">What I did</p><p>I helped design a stand that uses a swinging hammer to recreate a similar shock on the bench, so the team could run the test repeatedly instead of firing the drone each time.</p></section>
+        </div>
+      </div>
+      <section class="gallery-wrap reveal"><p class="lbl">Gallery</p>
+        <figure class="gallery media-slot" data-lightbox data-label="Shock-tester gallery">
+          <img class="slot-media" src="assets/shocktester-g1.jpg" alt="Shock-tester photo" loading="lazy">
+          <img class="slot-media" src="assets/shocktester-g2.jpg" alt="Shock-tester photo" loading="lazy">
+          <img class="slot-media" src="assets/shocktester-g3.jpg" alt="Shock-tester photo" loading="lazy">
+          <figcaption class="slot-label">[Shock-tester gallery — drop photos into assets/]</figcaption>
+        </figure>
+      </section>
+    </div>
+  </article>
+
+  <article class="project" id="proj-subscale">
+    <div class="wrap">
+      <p class="proj-tag reveal">SCI Technology · Co-op</p>
+      <h3 class="proj-title reveal">Subscale testbed drone</h3>
+      <p class="one-line reveal">Redesigned, built, and tested the team's testbed drone, Subscale, to add fiber-optic capability and a camera.</p>
+      <figure class="lead media-slot reveal" data-lightbox data-label="Subscale testbed drone">
+        <img class="slot-media" src="assets/subscale-lead.jpg" alt="Subscale testbed drone" loading="lazy">
+        <figcaption class="slot-label">[Subscale lead photo]</figcaption>
+      </figure>
+      <div class="proj-grid">
+        <aside class="proj-aside reveal">
+          <dl class="spec">
+            <div><dt>Role</dt><dd>Mechanical Engineering Co-op</dd></div>
+            <div><dt>Context</dt><dd>SCI Technology · Huntsville, AL</dd></div>
+            <div><dt>Dates</dt><dd>2024 – 2025</dd></div>
+          </dl>
+          <ul class="chips"><li>SolidWorks</li><li>Fabrication</li><li>Integration</li><li>Flight testing</li></ul>
+        </aside>
+        <div class="proj-body">
+          <section class="proj-block reveal"><p class="lbl">Problem</p><p>The team's testbed drone, Subscale, needed to carry more — fiber-optic capability and a camera — while still flying and testing reliably.</p></section>
+          <section class="proj-block reveal"><p class="lbl">What I did</p><p>I helped redesign, build, and test Subscale to add fiber-optic capability and a camera, integrating the new hardware and flying it to confirm everything worked together.</p></section>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article class="project" id="proj-suas">
+    <div class="wrap">
+      <p class="proj-tag reveal">Purdue Aerial Robotics Team</p>
+      <h3 class="proj-title reveal">Carbon-fiber SUAS airframe</h3>
+      <p class="one-line reveal">Hand-built fuselage and wings for an autonomous competition UAV — modeled, molded, and wet-laid.</p>
+      <figure class="lead media-slot reveal" data-lightbox data-label="SUAS airframe lead photo">
+        <img class="slot-media" src="assets/suas-lead.jpg" alt="Carbon-fiber SUAS airframe" loading="lazy">
+        <figcaption class="slot-label">[SUAS airframe lead photo]</figcaption>
+      </figure>
+      <div class="proj-grid">
+        <aside class="proj-aside reveal">
+          <dl class="spec">
+            <div><dt>Role</dt><dd>Airframe Team Member</dd></div>
+            <div><dt>Context</dt><dd>Purdue Aerial Robotics Team</dd></div>
+            <div><dt>Dates</dt><dd>Aug 2022 – May 2023</dd></div>
+          </dl>
+          <ul class="chips"><li>Siemens NX</li><li>Mold making</li><li>Carbon fiber wet layup</li><li>Shop fabrication</li></ul>
+        </aside>
+        <div class="proj-body">
+          <section class="proj-block reveal"><p class="lbl">Problem</p><p>The AUVSI-SUAS competition needs a light, strong airframe for surveillance, search-and-rescue, and payload delivery — built to survive competition flight.</p></section>
+          <section class="proj-block reveal"><p class="lbl">What I did</p>
+            <div class="story">
+              <div class="stage" aria-live="polite">
+                <div class="layer on media-slot" data-i="0"><img class="slot-media" src="assets/suas-step1.jpg" alt="Model in Siemens NX" loading="lazy"><div class="slot-label"><span class="ph">[Photo: NX model]</span></div></div>
+                <div class="layer media-slot" data-i="1"><img class="slot-media" src="assets/suas-step2.jpg" alt="Molds and wet layup" loading="lazy"><div class="slot-label"><span class="ph">[Photo: molds / carbon layup]</span></div></div>
+                <div class="layer media-slot" data-i="2"><img class="slot-media" src="assets/suas-step3.jpg" alt="Finished airframe" loading="lazy"><div class="slot-label"><span class="ph">[Photo: finished airframe]</span></div></div>
+              </div>
+              <div class="steps">
+                <div class="step on" data-i="0"><span class="n">Model</span><h3>Model in Siemens NX</h3><p>Modeled the fuselage and wings for an autonomous UAV built for surveillance, search-and-rescue, and payload delivery.</p></div>
+                <div class="step" data-i="1"><span class="n">Mold</span><h3>Mold &amp; lay up</h3><p>Made MDF molds and wet-laid carbon fiber for the fuselage and wings, then bonded the foam-and-plywood internal structure.</p></div>
+                <div class="step" data-i="2"><span class="n">Compete</span><h3>Finish &amp; compete</h3><p>Picked up shop fabrication across the build; the team placed 13th of 72 at the AUVSI-SUAS competition.</p></div>
+              </div>
+            </div>
+          </section>
+          <section class="proj-block reveal"><p class="lbl">Results</p>
+            <ul class="results">
+              <li><span class="num">13th</span><span class="cap">of 72 teams · AUVSI-SUAS</span></li>
+              <li><span class="num">~200</span><span class="cap">hours on the airframe</span></li>
+            </ul>
+          </section>
+        </div>
+      </div>
+      <section class="gallery-wrap reveal"><p class="lbl">Gallery</p>
+        <figure class="gallery media-slot" data-lightbox data-label="SUAS airframe gallery">
+          <img class="slot-media" src="assets/purdue-1.jpg" alt="Carbon-fiber airframe" loading="lazy">
+          <img class="slot-media" src="assets/purdue-2.jpg" alt="Carbon-fiber wet layup" loading="lazy">
+          <img class="slot-media" src="assets/suas-g1.jpg" alt="SUAS photo" loading="lazy">
+          <img class="slot-media" src="assets/suas-g2.jpg" alt="SUAS photo" loading="lazy">
+          <figcaption class="slot-label">[SUAS gallery — drop photos into assets/]</figcaption>
+        </figure>
+      </section>
+    </div>
+  </article>
+
+  <article class="project" id="proj-foamcutter">
+    <div class="wrap">
+      <p class="proj-tag reveal">Auburn VSDDL</p>
+      <h3 class="proj-title reveal">CNC hot-wire foam cutter</h3>
+      <p class="one-line reveal">A rebuilt CNC hot-wire cutter that makes the lab's wing and fuselage cores — bigger and more reliably.</p>
+      <figure class="lead media-slot reveal" data-lightbox data-label="Foam-cutter lead photo">
+        <img class="slot-media" src="assets/foamcutter-lead.jpg" alt="CNC hot-wire foam cutter" loading="lazy">
+        <figcaption class="slot-label">[Foam-cutter lead photo]</figcaption>
+      </figure>
+      <div class="proj-grid">
+        <aside class="proj-aside reveal">
+          <dl class="spec">
+            <div><dt>Role</dt><dd>Undergraduate Researcher</dd></div>
+            <div><dt>Context</dt><dd>Auburn VSDDL</dd></div>
+            <div><dt>Dates</dt><dd>2026 – Present</dd></div>
+          </dl>
+          <ul class="chips"><li>Stepper motion control</li><li>3D printing</li><li>Wire harnesses</li><li>Design for manufacturing</li><li>Shop fabrication</li></ul>
+        </aside>
+        <div class="proj-body">
+          <section class="proj-block reveal"><p class="lbl">Problem</p><p>The lab needed to cut its own composite cores, but the available cutter was too small and unreliable for the airframes they wanted to build.</p></section>
+          <section class="proj-block reveal"><p class="lbl">What I did</p>
+            <div class="story">
+              <div class="stage" aria-live="polite">
+                <div class="layer on media-slot" data-i="0">
+                  <img class="slot-media" src="assets/foamcutter-render.png" alt="CNC hot-wire foam cutter CAD render" loading="lazy">
+                  <div class="slot-label">
+                    <svg viewBox="0 0 300 180" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-label="Frame outline"><rect x="20" y="20" width="260" height="140"/><line x1="20" y1="60" x2="280" y2="60"/><rect x="40" y="60" width="16" height="100"/><rect x="244" y="60" width="16" height="100"/><line x1="48" y1="90" x2="252" y2="90" stroke-dasharray="6 6"/></svg>
+                    <span class="ph">[Replace with CAD render]</span>
+                  </div>
+                </div>
+                <div class="layer media-slot" data-i="1">
+                  <img class="slot-media" src="assets/foamcutter-wiring.jpg" alt="Foam cutter wiring and motion-control electronics" loading="lazy">
+                  <div class="slot-label">
+                    <svg viewBox="0 0 300 180" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-label="Wiring layout"><rect x="120" y="65" width="60" height="50" rx="4"/><circle cx="40" cy="40" r="16"/><circle cx="260" cy="40" r="16"/><circle cx="40" cy="140" r="16"/><circle cx="260" cy="140" r="16"/><path d="M56 40H120V75M244 40H180V75M56 140H120V105M244 140H180V105"/></svg>
+                    <span class="ph">[Replace with wiring photo]</span>
+                  </div>
+                </div>
+                <div class="layer media-slot" data-i="2">
+                  <video class="slot-media" muted loop playsinline autoplay preload="metadata" poster="assets/foamcutter-cut.jpg"><source src="assets/foamcutter-cut.mp4" type="video/mp4"></video>
+                  <div class="slot-label">
+                    <svg viewBox="0 0 300 180" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-label="Airfoil cut from foam"><path d="M30 95C70 50 160 46 270 92C160 104 70 108 30 95Z"/><line x1="10" y1="95" x2="290" y2="95" stroke-dasharray="3 6"/></svg>
+                    <span class="ph">[Replace with cutting video]</span>
+                  </div>
+                </div>
+              </div>
+              <div class="steps">
+                <div class="step on" data-i="0"><span class="n">Design</span><h3>Redesigning the frame</h3><p>Started from an open-source design and reworked its specs to enlarge the cutting envelope, then built the MDF frame on table, miter, and band saws.</p></div>
+                <div class="step" data-i="1"><span class="n">Wire</span><h3>Building the electrical system</h3><p>Engineered the motion-control electronics and built every harness, with 3D-printed mounts that line the heat sinks up with the cooling fan.</p></div>
+                <div class="step" data-i="2"><span class="n">Cut</span><h3>Cutting foam cores</h3><p>About 150 hours later, the lab can cut wing and fuselage cores for composite subscale aircraft.</p></div>
+              </div>
+            </div>
+          </section>
+          <section class="proj-block reveal"><p class="lbl">Results</p>
+            <ul class="results">
+              <li><span class="num">~150</span><span class="cap">hours · design to cutting</span></li>
+              <li><span class="num">Larger</span><span class="cap">cut envelope than the original</span></li>
+            </ul>
+          </section>
+        </div>
+      </div>
+      <section class="gallery-wrap reveal"><p class="lbl">Gallery</p>
+        <figure class="gallery media-slot" data-lightbox data-label="Foam-cutter gallery">
+          <img class="slot-media" src="assets/foamcutter-g1.jpg" alt="Foam cutter photo" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-g2.jpg" alt="Foam cutter photo" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-g3.jpg" alt="Foam cutter photo" loading="lazy">
+          <figcaption class="slot-label">[Foam-cutter gallery — drop photos into assets/]</figcaption>
+        </figure>
+      </section>
+    </div>
+  </article>
+
+  <article class="project" id="proj-afrl">
+    <div class="wrap">
+      <p class="proj-tag reveal">Auburn Senior Design · <span style="color:var(--muted)">In progress</span></p>
+      <h3 class="proj-title reveal">AFRL counter-UAS challenge</h3>
+      <p class="one-line reveal">A man-portable counter-sUAS system to protect small tactical teams from Group 1 drone threats.</p>
+      <figure class="lead media-slot reveal" data-lightbox data-label="AFRL concept render">
+        <img class="slot-media" src="assets/afrl-lead.jpg" alt="AFRL counter-UAS concept render" loading="lazy">
+        <figcaption class="slot-label">[AFRL concept render, when cleared]</figcaption>
+      </figure>
+      <div class="proj-grid">
+        <aside class="proj-aside reveal">
+          <dl class="spec">
+            <div><dt>Role</dt><dd>Senior Design</dd></div>
+            <div><dt>Context</dt><dd>Air Force Research Laboratory</dd></div>
+            <div><dt>Dates</dt><dd>Aug 2026 – Present</dd></div>
+          </dl>
+          <ul class="chips"><li>Systems design</li><li>Concept trade studies</li><li>Design reviews</li><li>Technical writing</li></ul>
+        </aside>
+        <div class="proj-body">
+          <section class="proj-block reveal"><p class="lbl">Problem</p><p>Small tactical teams need a lightweight, portable way to detect, identify, track, and neutralize Group 1 drone threats.</p></section>
+          <section class="proj-block reveal"><p class="lbl">What I did</p>
+            <div class="story">
+              <div class="stage" aria-live="polite">
+                <div class="layer on media-slot" data-i="0"><img class="slot-media" src="assets/afrl-step1.jpg" alt="Define the mission" loading="lazy"><div class="slot-label"><span class="ph">[Render, when cleared]</span></div></div>
+                <div class="layer media-slot" data-i="1"><img class="slot-media" src="assets/afrl-step2.jpg" alt="Trade three concepts" loading="lazy"><div class="slot-label"><span class="ph">[Render, when cleared]</span></div></div>
+                <div class="layer media-slot" data-i="2"><img class="slot-media" src="assets/afrl-step3.jpg" alt="Preliminary design review" loading="lazy"><div class="slot-label"><span class="ph">[Render, when cleared]</span></div></div>
+              </div>
+              <div class="steps">
+                <div class="step on" data-i="0"><span class="n">Define</span><h3>Define the mission</h3><p>Worked with subject-matter experts to define a lightweight scouting-and-surveillance mission against Group 1 drone threats.</p></div>
+                <div class="step" data-i="1"><span class="n">Trade</span><h3>Trade three concepts</h3><p>Evaluated three concepts across the detect–identify–track–neutralize kill chain.</p></div>
+                <div class="step" data-i="2"><span class="n">Review</span><h3>Preliminary Design Review</h3><p>Co-authored our 80-page PDR. In progress toward the detailed design.</p></div>
+              </div>
+            </div>
+          </section>
+          <section class="proj-block reveal"><p class="lbl">Results</p>
+            <ul class="results">
+              <li><span class="num">80</span><span class="cap">page Preliminary Design Review</span></li>
+              <li><span class="num">3</span><span class="cap">concepts across the kill chain</span></li>
+            </ul>
+          </section>
+        </div>
+      </div>
+      <section class="gallery-wrap reveal"><p class="lbl">Gallery</p>
+        <figure class="gallery media-slot" data-lightbox data-label="AFRL gallery">
+          <img class="slot-media" src="assets/afrl-g1.jpg" alt="AFRL render" loading="lazy">
+          <img class="slot-media" src="assets/afrl-g2.jpg" alt="AFRL render" loading="lazy">
+          <figcaption class="slot-label">[AFRL gallery — renders when cleared]</figcaption>
+        </figure>
+      </section>
+    </div>
+  </article>
 </section>
 
 <section id="skills" class="section">
@@ -359,43 +691,6 @@ nav .links a.active::after{content:""; position:absolute; left:0; right:0; botto
       <li class="skill-group reveal"><span class="skill-step">05</span><h3>Code &amp; Test</h3><ul class="chips"><li>Hardware testing</li><li>Flight testing</li><li>Design iteration</li><li>Agile / Scrum</li><li>Python</li><li>MATLAB</li><li>C / C++</li><li>Java</li><li>JavaScript</li></ul></li>
     </ol>
     <div class="creds reveal"><strong>Credentials</strong><ul class="chips"><li>FAA Part 107 Remote Pilot</li><li>U.S. Citizen</li></ul></div>
-  </div>
-</section>
-
-<section id="build" class="section">
-  <div class="wrap">
-    <h2 class="reveal">Projects</h2>
-    <h3 class="proj-name reveal">CNC Hot-Wire Foam Cutter</h3>
-    <div class="story">
-      <div class="stage" aria-live="polite">
-        <div class="layer on media-slot" data-i="0">
-          <img class="slot-media" src="assets/foamcutter-render.png" alt="CNC hot-wire foam cutter CAD render" loading="lazy">
-          <div class="slot-label">
-            <svg viewBox="0 0 300 180" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-label="Frame outline"><rect x="20" y="20" width="260" height="140"/><line x1="20" y1="60" x2="280" y2="60"/><rect x="40" y="60" width="16" height="100"/><rect x="244" y="60" width="16" height="100"/><line x1="48" y1="90" x2="252" y2="90" stroke-dasharray="6 6"/></svg>
-            <span class="ph">[Replace with CAD render]</span>
-          </div>
-        </div>
-        <div class="layer media-slot" data-i="1">
-          <img class="slot-media" src="assets/foamcutter-wiring.jpg" alt="Foam cutter wiring and motion-control electronics" loading="lazy">
-          <div class="slot-label">
-            <svg viewBox="0 0 300 180" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-label="Wiring layout"><rect x="120" y="65" width="60" height="50" rx="4"/><circle cx="40" cy="40" r="16"/><circle cx="260" cy="40" r="16"/><circle cx="40" cy="140" r="16"/><circle cx="260" cy="140" r="16"/><path d="M56 40H120V75M244 40H180V75M56 140H120V105M244 140H180V105"/></svg>
-            <span class="ph">[Replace with wiring photo]</span>
-          </div>
-        </div>
-        <div class="layer media-slot" data-i="2">
-          <video class="slot-media" muted loop playsinline autoplay preload="metadata" poster="assets/foamcutter-cut.jpg"><source src="assets/foamcutter-cut.mp4" type="video/mp4"></video>
-          <div class="slot-label">
-            <svg viewBox="0 0 300 180" fill="none" stroke="currentColor" stroke-width="2" role="img" aria-label="Airfoil cut from foam"><path d="M30 95C70 50 160 46 270 92C160 104 70 108 30 95Z"/><line x1="10" y1="95" x2="290" y2="95" stroke-dasharray="3 6"/></svg>
-            <span class="ph">[Replace with cutting video]</span>
-          </div>
-        </div>
-      </div>
-      <div class="steps">
-        <div class="step on" data-i="0"><span class="n">Design</span><h3>Redesigning the frame</h3><p>Started from an open-source design and reworked its specs to enlarge the cutting envelope, then built the MDF frame on table, miter, and band saws.</p></div>
-        <div class="step" data-i="1"><span class="n">Wire</span><h3>Building the electrical system</h3><p>Engineered the motion-control electronics and built every harness, with 3D-printed mounts that line the heat sinks up with the cooling fan.</p></div>
-        <div class="step" data-i="2"><span class="n">Cut</span><h3>Cutting foam cores</h3><p>About 150 hours later, the lab can cut wing and fuselage cores for composite subscale aircraft.</p></div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -433,18 +728,22 @@ nav .links a.active::after{content:""; position:absolute; left:0; right:0; botto
 
 <script>
 (function(){
-  var steps=[].slice.call(document.querySelectorAll('.step'));
-  var layers=[].slice.call(document.querySelectorAll('.layer'));
   if(!('IntersectionObserver' in window)) return;
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(!e.isIntersecting) return;
-      var i=e.target.getAttribute('data-i');
-      steps.forEach(function(s){s.classList.toggle('on', s.getAttribute('data-i')===i)});
-      layers.forEach(function(l){l.classList.toggle('on', l.getAttribute('data-i')===i)});
-    });
-  },{rootMargin:'-45% 0px -45% 0px'});
-  steps.forEach(function(s){io.observe(s)});
+  /* each project's build story runs independently — scope steps/layers per .story */
+  [].slice.call(document.querySelectorAll('.story')).forEach(function(story){
+    var steps=[].slice.call(story.querySelectorAll('.step'));
+    var layers=[].slice.call(story.querySelectorAll('.layer'));
+    if(!steps.length) return;
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(!e.isIntersecting) return;
+        var i=e.target.getAttribute('data-i');
+        steps.forEach(function(s){s.classList.toggle('on', s.getAttribute('data-i')===i)});
+        layers.forEach(function(l){l.classList.toggle('on', l.getAttribute('data-i')===i)});
+      });
+    },{rootMargin:'-45% 0px -45% 0px'});
+    steps.forEach(function(s){io.observe(s)});
+  });
 })();
 
 (function(){
@@ -526,7 +825,7 @@ nav .links a.active::after{content:""; position:absolute; left:0; right:0; botto
 
   /* card tilt and spotlight follow the cursor */
   if(!reduce && window.matchMedia && matchMedia('(hover:hover)').matches){
-    [].slice.call(document.querySelectorAll('.card')).forEach(function(card){
+    [].slice.call(document.querySelectorAll('.proj-card')).forEach(function(card){
       card.addEventListener('pointermove', function(e){
         var r = card.getBoundingClientRect();
         var x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
@@ -559,21 +858,25 @@ nav .links a.active::after{content:""; position:absolute; left:0; right:0; botto
 
   /* drop-in media: reveal real files from assets/, keep the label box as fallback */
   [].slice.call(document.querySelectorAll('.media-slot')).forEach(function(slot){
+    var isGallery = slot.classList.contains('gallery');
     var loaded = [];
-    var markCover = function(m){
+    var mark = function(m){
       if(loaded.indexOf(m) !== -1) return;
       loaded.push(m);
       slot.classList.add('has-media');
-      if(!slot.querySelector('.slot-media.cover')) m.classList.add('cover');
-      if(loaded.length > 1) slot.setAttribute('data-count', loaded.length);
+      if(isGallery){ m.classList.add('shown'); }       /* gallery: show every loaded thumb */
+      else {                                            /* single slot: first loaded is the cover */
+        if(!slot.querySelector('.slot-media.cover')) m.classList.add('cover');
+        if(loaded.length > 1) slot.setAttribute('data-count', loaded.length);
+      }
     };
     [].slice.call(slot.querySelectorAll('.slot-media')).forEach(function(m){
       if(m.tagName === 'IMG'){
-        if(m.complete && m.naturalWidth > 0){ markCover(m); }
-        else { m.addEventListener('load', function(){ if(m.naturalWidth > 0) markCover(m); }); }
+        if(m.complete && m.naturalWidth > 0){ mark(m); }
+        else { m.addEventListener('load', function(){ if(m.naturalWidth > 0) mark(m); }); }
         m.addEventListener('error', function(){ m.remove(); });
       } else if(m.tagName === 'VIDEO'){
-        m.addEventListener('loadeddata', function(){ markCover(m); });
+        m.addEventListener('loadeddata', function(){ mark(m); });
         m.addEventListener('error', function(){ m.remove(); });
         if(reduce){ m.removeAttribute('autoplay'); try{ m.pause(); }catch(e){} }
       }
@@ -600,14 +903,15 @@ nav .links a.active::after{content:""; position:absolute; left:0; right:0; botto
     dlg.addEventListener('close', function(){ lbImg.removeAttribute('src'); });
 
     [].slice.call(document.querySelectorAll('.media-slot[data-lightbox]')).forEach(function(slot){
-      var act = function(){
+      var act = function(e){
         var cover = slot.querySelector('.slot-media.cover');
         if(cover && cover.tagName === 'VIDEO'){ if(cover.paused) cover.play(); else cover.pause(); return; }
-        var imgs = [].slice.call(slot.querySelectorAll('img.slot-media'))
-          .filter(function(m){ return m.naturalWidth > 0; })
-          .map(function(m){ return {src: m.currentSrc || m.src, alt: m.alt}; });
-        if(!imgs.length) return;
-        group = imgs; idx = 0; render(); dlg.showModal();
+        var all = [].slice.call(slot.querySelectorAll('img.slot-media')).filter(function(m){ return m.naturalWidth > 0; });
+        if(!all.length) return;
+        var start = 0;
+        if(e && e.target && e.target.tagName === 'IMG'){ var k = all.indexOf(e.target); if(k >= 0) start = k; }
+        group = all.map(function(m){ return {src: m.currentSrc || m.src, alt: m.alt}; });
+        idx = start; render(); dlg.showModal();
       };
       slot.setAttribute('role','button');
       slot.setAttribute('tabindex','0');
