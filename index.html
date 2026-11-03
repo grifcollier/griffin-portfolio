@@ -222,6 +222,14 @@ nav .links a.active::after{content:""; position:absolute; left:0; right:0; botto
   .detail .photo{animation:photopar linear both; animation-timeline:view(); animation-range:entry 0% exit 100%}
 }
 @keyframes photopar{from{transform:translateY(30px)} 20%{transform:translateY(0)} to{transform:translateY(-24px)}}
+
+/* ---------- JS fallback reveals (only when CSS scroll-driven animations are
+   unsupported AND JS is running; .js-anim is added by script, so no-JS and
+   reduced-motion users always see content at rest) ---------- */
+.js-anim .reveal{opacity:0; transform:translateY(42px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); will-change:opacity, transform}
+.js-anim .reveal.in{opacity:1; transform:none}
+.js-anim .media{opacity:0; transition:opacity .8s ease}
+.js-anim .media.in{opacity:1}
 </style>
 </head>
 <body>
@@ -627,6 +635,44 @@ nav .links a.active::after{content:""; position:absolute; left:0; right:0; botto
       }
     }, {rootMargin:'-45% 0px -45% 0px', threshold:[0, .25, .5, 1]});
     ids.forEach(function(id){ var el = document.getElementById(id); if(el) io.observe(el); });
+  }
+})();
+
+/* Hero scroll-shrink + reveal-on-scroll fallback for browsers without CSS
+   scroll-driven animations (Safari <26, iOS, Firefox). Chrome/Edge and
+   reduced-motion users skip this and keep the native behavior / rest state. */
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var vtSupported = !!(window.CSS && CSS.supports && CSS.supports('animation-timeline: view()'));
+  if(vtSupported || reduce) return;
+  document.documentElement.classList.add('js-anim');
+
+  /* reveal each element once as it scrolls into view */
+  var targets = [].slice.call(document.querySelectorAll('.reveal, .media'));
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {rootMargin:'0px 0px -12% 0px', threshold:0.05});
+    targets.forEach(function(el){ io.observe(el); });
+  } else {
+    targets.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* hero name shrinks and subtext fades as you scroll away (mirrors CSS shrink/dim) */
+  var hero = document.querySelector('.hero');
+  var h1 = hero && hero.querySelector('h1');
+  var fade = hero ? [].slice.call(hero.querySelectorAll('.lede, .edu, .cta')) : [];
+  if(hero){
+    var onScroll = function(){
+      var vh = window.innerHeight || document.documentElement.clientHeight || 800;
+      var y = window.scrollY || window.pageYOffset || 0;
+      var ps = Math.min(1, y / (vh * 0.55)), pd = Math.min(1, y / (vh * 0.45));
+      if(h1){ h1.style.transform = 'scale(' + (1 - 0.14 * ps).toFixed(3) + ')'; h1.style.opacity = (1 - 0.75 * ps).toFixed(3); }
+      for(var i = 0; i < fade.length; i++){ fade[i].style.opacity = (1 - pd).toFixed(3); fade[i].style.transform = 'translateY(' + (-16 * pd).toFixed(1) + 'px)'; }
+    };
+    var q = false;
+    window.addEventListener('scroll', function(){ if(!q){ q = true; requestAnimationFrame(function(){ q = false; onScroll(); }); } }, {passive:true});
+    onScroll();
   }
 })();
 </script>
