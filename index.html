@@ -226,6 +226,7 @@ figure{margin:0}
 .slot-media{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; display:block; border-radius:inherit; transition:opacity .6s ease, transform .5s cubic-bezier(.2,.7,.2,1)}
 .media-slot.has-media .slot-media.cover{opacity:1}
 .media-slot.has-media>.slot-label{opacity:0; visibility:hidden}
+.media-slot.is-empty::after{content:"Coming soon"; position:absolute; top:12px; left:12px; z-index:3; font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); background:color-mix(in srgb, var(--bg) 72%, transparent); border:1px solid color-mix(in srgb, var(--accent) 50%, transparent); border-radius:999px; padding:5px 12px; -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); pointer-events:none}
 .media-slot[data-count]::after{content:attr(data-count) " photos"; position:absolute; right:12px; bottom:12px; z-index:2; font-family:var(--mono); font-size:12px; padding:5px 11px; border-radius:999px; background:color-mix(in srgb, var(--bg) 70%, transparent); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); color:var(--fg); pointer-events:none}
 .media-slot[data-lightbox].has-media{cursor:zoom-in}
 .media-slot[data-lightbox]:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
@@ -437,7 +438,7 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
         <li class="tl-item reveal"><span class="tl-year">2024–25</span><div><h3>Mechanical Engineering Co-op · SCI Technology</h3><p>Three rotations (Jan 2024 – Aug 2025) designing, building, and flight-testing counter-drone hardware in Huntsville, AL.</p><p class="tl-links"><a class="tl-link" href="#proj-aeroguard">See: AeroGuard →</a><a class="tl-link" href="#proj-shocktester">See: Shock-test stand →</a><a class="tl-link" href="#proj-subscale">See: Subscale →</a></p></div></li>
         <li class="tl-item reveal"><span class="tl-year">2025</span><div><h3>Co-op &amp; Internship Ambassador · Auburn University</h3><p>With Career Development &amp; Corporate Relations, mentored underclassmen through applying, onboarding, and accepting offers; presented to classes and helped run on-campus career fairs.</p></div></li>
         <li class="tl-item reveal"><span class="tl-year">2026–Present</span><div><h3>Undergraduate Researcher · Auburn Vehicle Systems, Dynamics &amp; Design Lab</h3><p>Designed and built the lab's CNC hot-wire foam cutter to cut larger composite cores, and support subscale aircraft research.</p><p class="tl-links"><a class="tl-link" href="#proj-foamcutter">See: Foam cutter →</a></p></div></li>
-        <li class="tl-item reveal"><span class="tl-year">2026–Present</span><div><h3>Senior Design · AFRL counter-UAS</h3><p>Developing a man-portable counter-sUAS system for the Air Force Research Laboratory; co-authored our 80-page Preliminary Design Review.</p><p class="tl-links"><a class="tl-link" href="#proj-afrl">See: AFRL →</a></p></div></li>
+        <li class="tl-item reveal"><span class="tl-year">2026–Present</span><div><h3>Senior Design · AFRL counter-UAS</h3><p>Developing a man-portable counter-sUAS system for the Air Force Research Laboratory; co-authored our 85-page Preliminary Design Review.</p><p class="tl-links"><a class="tl-link" href="#proj-afrl">See: AFRL →</a></p></div></li>
         <li class="tl-item next reveal"><span class="tl-year">2027</span><div><h3>Bachelor of Mechanical Engineering, expected May 2027</h3><p>Seeking a full-time aerospace or mechanical engineering role in UAS and defense.</p></div></li>
       </ol>
     </div>
@@ -493,7 +494,7 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
             <div><dt>Location</dt><dd>Auburn, AL</dd></div>
             <div><dt>Dates</dt><dd>2026 – Present</dd></div>
           </dl>
-          <ul class="chips"><li>Stepper motion control</li><li>3D printing</li><li>Wire harnesses</li><li>Design for manufacturing</li><li>Shop fabrication</li></ul>
+          <ul class="chips"><li>SolidWorks</li><li>Stepper motion control</li><li>Motion-control software</li><li>Electronics</li><li>Soldering</li><li>3D printing</li><li>Wire harnesses</li><li>G-code</li><li>Design for manufacturing</li><li>Shop fabrication</li></ul>
         </aside>
         <div class="proj-body">
           <section class="proj-block reveal"><p class="lbl">Problem</p><p>The lab needed to cut its own composite cores, but the available cutter was too small and unreliable for the airframes they wanted to build.</p></section>
@@ -585,7 +586,7 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
             <div><dt>Location</dt><dd>Huntsville, AL</dd></div>
             <div><dt>Dates</dt><dd>Jan 2024 – Aug 2025</dd></div>
           </dl>
-          <ul class="chips"><li>SolidWorks</li><li>FEA</li><li>CFD</li><li>GD&amp;T</li><li>Fabrication</li><li>Scrum</li></ul>
+          <ul class="chips"><li>SolidWorks</li><li>SolidWorks PDM</li><li>FEA</li><li>CFD</li><li>GD&amp;T</li><li>Waterjet</li><li>Machining</li><li>3D printing</li><li>Hardware integration</li><li>Fabrication</li><li>Scrum</li></ul>
         </aside>
         <div class="proj-body">
           <section class="proj-block reveal"><p class="lbl">Problem</p><p>A counter-drone system only works if its hardware is designed, built, and refined to hold up in the field.</p></section>
@@ -628,7 +629,7 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
             <div><dt>Location</dt><dd>Huntsville, AL</dd></div>
             <div><dt>Dates</dt><dd>2024 – 2025</dd></div>
           </dl>
-          <ul class="chips"><li>SolidWorks</li><li>Design for manufacturing</li><li>Fabrication</li></ul>
+          <ul class="chips"><li>SolidWorks</li><li>Mechanism design</li><li>Design for manufacturing</li><li>Machining</li><li>Test-rig design</li><li>Fabrication</li></ul>
         </aside>
         <div class="proj-body">
           <section class="proj-block reveal"><p class="lbl">Problem</p><p>Testing the system against repeated shock was slow when it meant going out and firing the drone each time.</p></section>
@@ -661,7 +662,7 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
             <div><dt>Location</dt><dd>Huntsville, AL</dd></div>
             <div><dt>Dates</dt><dd>2024 – 2025</dd></div>
           </dl>
-          <ul class="chips"><li>SolidWorks</li><li>Fabrication</li><li>Integration</li><li>Flight testing</li></ul>
+          <ul class="chips"><li>SolidWorks</li><li>Wire harnesses</li><li>Soldering</li><li>3D printing</li><li>Payload integration</li><li>Fabrication</li><li>Flight testing</li></ul>
         </aside>
         <div class="proj-body">
           <section class="proj-block reveal"><p class="lbl">Problem</p><p>The team's testbed drone, Subscale, needed to carry more — fiber-optic capability and a camera — while still flying and testing reliably.</p></section>
@@ -694,7 +695,7 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
             <div><dt>Location</dt><dd>West Lafayette, IN</dd></div>
             <div><dt>Dates</dt><dd>Aug 2022 – May 2023</dd></div>
           </dl>
-          <ul class="chips"><li>Siemens NX</li><li>Mold making</li><li>Carbon fiber wet layup</li><li>Shop fabrication</li></ul>
+          <ul class="chips"><li>Siemens NX</li><li>Mold making</li><li>Carbon fiber wet layup</li><li>Vacuum bagging</li><li>Structural bonding</li><li>Avionics integration</li><li>Flight testing</li><li>Shop fabrication</li></ul>
         </aside>
         <div class="proj-body">
           <section class="proj-block reveal"><p class="lbl">Problem</p><p>The AUVSI-SUAS competition needs a light, strong airframe for surveillance, search-and-rescue, and payload delivery — built to survive competition flight.</p></section>
@@ -786,7 +787,7 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
             <div><dt>Location</dt><dd>Auburn, AL</dd></div>
             <div><dt>Dates</dt><dd>Aug 2026 – Present</dd></div>
           </dl>
-          <ul class="chips"><li>Systems design</li><li>Concept trade studies</li><li>Design reviews</li><li>Technical writing</li></ul>
+          <ul class="chips"><li>Systems design</li><li>Requirements analysis</li><li>Mission analysis</li><li>Concept trade studies</li><li>Kill-chain analysis</li><li>Counter-UAS systems</li><li>Design reviews</li><li>Technical writing</li></ul>
         </aside>
         <div class="proj-body">
           <section class="proj-block reveal"><p class="lbl">Problem</p><p>Small tactical teams need a lightweight, portable way to detect, identify, track, and neutralize Group 1 drone threats.</p></section>
@@ -794,13 +795,13 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
             <div class="build">
               <div class="build-step">
                 <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/afrl-step3.jpg" alt="Preliminary design review" loading="lazy"><figcaption class="slot-label">[Render, when cleared]</figcaption></figure>
-                <div class="btext reveal"><span class="n">Review</span><h3>Preliminary Design Review</h3><p>Co-authored our 80-page PDR. In progress toward the detailed design.</p></div>
+                <div class="btext reveal"><span class="n">Review</span><h3>Preliminary Design Review</h3><p>Co-authored our 85-page PDR. In progress toward the detailed design.</p></div>
               </div>
             </div>
           </section>
           <section class="proj-block reveal"><p class="lbl">Results</p>
             <ul class="results">
-              <li><span class="num">80</span><span class="cap">page Preliminary Design Review</span></li>
+              <li><span class="num">85</span><span class="cap">page Preliminary Design Review</span></li>
               <li><span class="num">3</span><span class="cap">concepts across the kill chain</span></li>
             </ul>
           </section>
@@ -1016,10 +1017,18 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
   [].slice.call(document.querySelectorAll('.media-slot')).forEach(function(slot){
     var isGallery = slot.classList.contains('gallery');
     var loaded = [];
+    var medias = [].slice.call(slot.querySelectorAll('.slot-media'));
+    var total = medias.length, failed = 0;
+    var fail = function(m){                                /* media file not present */
+      if(m.parentNode) m.remove();
+      failed++;
+      if(failed >= total && !slot.classList.contains('has-media')) slot.classList.add('is-empty');
+    };
     var mark = function(m){
       if(loaded.indexOf(m) !== -1) return;
       loaded.push(m);
       slot.classList.add('has-media');
+      slot.classList.remove('is-empty');
       if(isGallery){ m.classList.add('shown'); return; }  /* gallery: show every loaded thumb */
       if(m.tagName === 'VIDEO'){                           /* a video always wins the cover... */
         var prev = slot.querySelector('.slot-media.cover');
@@ -1029,15 +1038,17 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
         m.classList.add('cover');
       }
     };
-    [].slice.call(slot.querySelectorAll('.slot-media')).forEach(function(m){
+    medias.forEach(function(m){
       if(m.tagName === 'IMG'){
-        if(m.complete && m.naturalWidth > 0){ mark(m); }
-        else { m.addEventListener('load', function(){ if(m.naturalWidth > 0) mark(m); }); }
-        m.addEventListener('error', function(){ m.remove(); });
+        if(m.complete){ if(m.naturalWidth > 0) mark(m); else fail(m); }
+        else {
+          m.addEventListener('load', function(){ if(m.naturalWidth > 0) mark(m); else fail(m); });
+          m.addEventListener('error', function(){ fail(m); });
+        }
       } else if(m.tagName === 'VIDEO'){
         m.addEventListener('loadeddata', function(){ mark(m); });
         m.addEventListener('loadedmetadata', function(){ mark(m); });   /* reliable for poster thumbnails */
-        m.addEventListener('error', function(){ m.remove(); });
+        m.addEventListener('error', function(){ fail(m); });
         if(reduce){ m.removeAttribute('autoplay'); try{ m.pause(); }catch(e){} }
       }
     });
