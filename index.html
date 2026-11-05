@@ -145,7 +145,8 @@ nav .links a:hover{color:var(--fg)}
 :root[data-theme="dark"] .contact-fab{color:#0B0C0D}
 :root[data-theme="light"] .contact-fab{color:#fff}
 .creds{display:flex; flex-wrap:wrap; align-items:center; gap:10px 12px; margin-top:48px; padding-top:24px; border-top:1px solid var(--line)}
-.creds strong{font-weight:600; margin-right:4px}
+.creds strong{font-weight:600; margin-right:6px; font-size:clamp(18px,2vw,22px)}
+.creds .chips li{font-size:16px; padding:8px 16px}
 .chips{display:flex; flex-wrap:wrap; gap:8px; list-style:none; margin:0; padding:0}
 .chips li{background:var(--surface); border-radius:999px; padding:6px 14px; font-size:15px; line-height:1.4}
 
@@ -434,11 +435,11 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
       <span class="tl-fill" aria-hidden="true"></span>
       <ol class="timeline">
         <li class="tl-item reveal"><span class="tl-year">2021</span><div><h3>Purdue University</h3><p>Began mechanical engineering coursework (59 credit hours).</p></div></li>
-        <li class="tl-item reveal"><span class="tl-year">2022–23</span><div><h3>Airframe Team Member · Purdue Aerial Robotics Team</h3><p>Built carbon-fiber structures for a competition UAV; toured Airbus Hamburg and the Farnborough Air Show on a study abroad.</p><p class="tl-links"><a class="tl-link" href="#proj-suas">See project: SUAS airframe →</a></p></div></li>
+        <li class="tl-item reveal"><span class="tl-year">2022–23</span><div><h3>Airframe Team Member · Purdue Aerial Robotics Team</h3><p>Built carbon-fiber structures for a competition UAV.</p><p class="tl-links"><a class="tl-link" href="#proj-suas">See project: SUAS airframe →</a></p></div></li>
         <li class="tl-item reveal"><span class="tl-year">2023</span><div><h3>Transferred to Auburn University</h3><p>Bachelor of Mechanical Engineering, minor in finance.</p></div></li>
         <li class="tl-item reveal"><span class="tl-year">2024–25</span><div><h3>Mechanical Engineering Co-op · SCI Technology</h3><p>Three rotations (Jan 2024 – Aug 2025) designing, building, and flight-testing counter-drone hardware in Huntsville, AL.</p><p class="tl-links"><a class="tl-link" href="#proj-aeroguard">See: AeroGuard →</a><a class="tl-link" href="#proj-shocktester">See: Shock-test stand →</a><a class="tl-link" href="#proj-subscale">See: Subscale →</a></p></div></li>
         <li class="tl-item reveal"><span class="tl-year">2025</span><div><h3>Co-op &amp; Internship Ambassador · Auburn University</h3><p>With Career Development &amp; Corporate Relations, mentored underclassmen through applying, onboarding, and accepting offers; presented to classes and helped run on-campus career fairs.</p></div></li>
-        <li class="tl-item reveal"><span class="tl-year">2026–Present</span><div><h3>Undergraduate Researcher · Auburn Vehicle Systems, Dynamics &amp; Design Lab</h3><p>Designed and built the lab's CNC hot-wire foam cutter to cut larger composite cores, and support subscale aircraft research.</p><p class="tl-links"><a class="tl-link" href="#proj-foamcutter">See: Foam cutter →</a></p></div></li>
+        <li class="tl-item reveal"><span class="tl-year">2026–Present</span><div><h3>Undergraduate Researcher · Auburn Vehicle Systems, Dynamics &amp; Design Lab (VSDDL)</h3><p>Designed and built the lab's CNC hot-wire foam cutter to cut larger composite cores, and support subscale aircraft research.</p><p class="tl-links"><a class="tl-link" href="#proj-foamcutter">See: Foam cutter →</a></p></div></li>
         <li class="tl-item reveal"><span class="tl-year">2026–Present</span><div><h3>Senior Design · AFRL counter-UAS</h3><p>Developing a man-portable counter-sUAS system for the Air Force Research Laboratory; co-authored our 85-page Preliminary Design Review.</p><p class="tl-links"><a class="tl-link" href="#proj-afrl">See: AFRL →</a></p></div></li>
         <li class="tl-item next reveal"><span class="tl-year">2027</span><div><h3>Bachelor of Mechanical Engineering, expected May 2027</h3><p>Seeking a full-time aerospace or mechanical engineering role in UAS and defense.</p></div></li>
       </ol>
@@ -453,7 +454,7 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
     <div class="proj-cards">
       <a class="proj-card reveal" href="#proj-foamcutter">
         <div class="thumb media-slot"><img class="slot-media" src="assets/foamcutter-lead.jpg" alt="CNC hot-wire foam cutter" loading="lazy"><span class="slot-label">[Foam-cutter lead photo]</span></div>
-        <div class="pc-body"><span class="tag">Auburn Vehicle Systems, Dynamics &amp; Design Lab</span><h3>CNC hot-wire foam cutter</h3><p>A cutter I designed and built to make the lab's wing and fuselage cores.</p><span class="more">View project →</span></div>
+        <div class="pc-body"><span class="tag">Auburn Vehicle Systems, Dynamics &amp; Design Lab (VSDDL)</span><h3>CNC hot-wire foam cutter</h3><p>A cutter I designed and built to make the lab's wing and fuselage cores.</p><span class="more">View project →</span></div>
       </a>
       <a class="proj-card reveal" href="#proj-aeroguard">
         <div class="thumb media-slot"><img class="slot-media" src="assets/aeroguard-lead.jpg" alt="AeroGuard counter-drone system" loading="lazy"><span class="slot-label">[AeroGuard lead photo]</span></div>
@@ -480,7 +481,7 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
 
   <article class="project" id="proj-foamcutter">
     <div class="wrap">
-      <p class="proj-tag reveal">Auburn Vehicle Systems, Dynamics &amp; Design Lab</p>
+      <p class="proj-tag reveal">Auburn Vehicle Systems, Dynamics &amp; Design Lab (VSDDL)</p>
       <h3 class="proj-title reveal">CNC hot-wire foam cutter</h3>
       <p class="one-line reveal">A CNC hot-wire cutter I designed and built to make the lab's wing and fuselage cores — bigger and more reliably.</p>
       <figure class="lead media-slot reveal" data-lightbox data-label="Foam-cutter lead photo">
@@ -491,7 +492,7 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
         <aside class="proj-aside reveal">
           <dl class="spec">
             <div><dt>Role</dt><dd>Undergraduate Researcher</dd></div>
-            <div><dt>Organization</dt><dd>Vehicle Systems, Dynamics &amp; Design Lab</dd></div>
+            <div><dt>Organization</dt><dd>Vehicle Systems, Dynamics &amp; Design Lab (VSDDL)</dd></div>
             <div><dt>Location</dt><dd>Auburn, AL</dd></div>
             <div><dt>Dates</dt><dd>2026 – Present</dd></div>
           </dl>
@@ -535,7 +536,7 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
               </div>
               <div class="build-step">
                 <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-software.jpg" alt="Motion-control software" loading="lazy"><figcaption class="slot-label">[Software]</figcaption></figure>
-                <div class="btext reveal"><span class="n">Software &amp; Test</span><h3>Tune the software</h3><p>Tuned the motion-control software to drive the hot wire accurately.</p></div>
+                <div class="btext reveal"><span class="n">Software &amp; Test</span><h3>Install software and tune the cutter</h3><p>Installed the motion-control software and tuned the cutter to drive the hot wire accurately.</p></div>
               </div>
               <div class="build-step">
                 <figure class="shot media-slot reveal" data-lightbox><video class="slot-media" muted loop playsinline autoplay preload="metadata" poster="assets/foamcutter-cut.jpg"><source src="assets/foamcutter-cut.mp4" type="video/mp4"></video><figcaption class="slot-label">[Cutting clip — coming soon]</figcaption></figure>
@@ -547,6 +548,7 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
             <ul class="results">
               <li><span class="num">~150</span><span class="cap">hours · design to cutting</span></li>
               <li><span class="num">Larger</span><span class="cap">cut envelope than the original</span></li>
+              <li><span class="num">24×24×48&quot;</span><span class="cap">cutting volume</span></li>
             </ul>
           </section>
         </div>
@@ -592,9 +594,10 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
         <div class="proj-body">
           <section class="proj-block reveal"><p class="lbl">Problem</p><p>A counter-drone system only works if its hardware is designed, built, and refined to hold up in the field.</p></section>
           <section class="proj-block reveal"><p class="lbl">What I did</p><p>As a co-op on the AeroGuard team, I worked across the hardware — design and analysis, fabrication and integration, and hands-on iteration. A lot of the detail stays in-house, so this one is kept high-level.</p></section>
-          <section class="proj-block reveal"><p class="lbl">At a glance</p>
+          <section class="proj-block reveal"><p class="lbl">Results</p>
             <ul class="results">
-              <li><span class="num">1 yr</span><span class="cap">full-year co-op · 3 semesters</span></li>
+              <li><span class="num">1 yr</span><span class="cap">full-year co-op</span></li>
+              <li><span class="num">3</span><span class="cap">co-op semesters</span></li>
               <li><span class="num">Hardware</span><span class="cap">design → build → integrate</span></li>
             </ul>
           </section>
@@ -635,6 +638,12 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
         <div class="proj-body">
           <section class="proj-block reveal"><p class="lbl">Problem</p><p>Testing the system against repeated shock was slow when it meant going out and firing the drone each time.</p></section>
           <section class="proj-block reveal"><p class="lbl">What I did</p><p>I helped design a stand that uses a swinging hammer to recreate a similar shock on the bench, so the team could run the test repeatedly instead of firing the drone each time.</p></section>
+          <section class="proj-block reveal"><p class="lbl">Results</p>
+            <ul class="results">
+              <li><span class="num">On-bench</span><span class="cap">repeatable shock testing</span></li>
+              <li><span class="num">No range</span><span class="cap">no drone live-fire per test</span></li>
+            </ul>
+          </section>
         </div>
       </div>
       <section class="gallery-wrap reveal"><p class="lbl">Gallery</p>
@@ -668,6 +677,12 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
         <div class="proj-body">
           <section class="proj-block reveal"><p class="lbl">Problem</p><p>The team's testbed drone, Subscale, needed to carry more — fiber-optic capability and a camera — while still flying and testing reliably.</p></section>
           <section class="proj-block reveal"><p class="lbl">What I did</p><p>I helped design, build, and test Subscale to add fiber-optic capability and a camera, integrating the new hardware and flying it to confirm everything worked together.</p></section>
+          <section class="proj-block reveal"><p class="lbl">Results</p>
+            <ul class="results">
+              <li><span class="num">Fiber-optic</span><span class="cap">capability added</span></li>
+              <li><span class="num">Camera</span><span class="cap">payload integrated</span></li>
+            </ul>
+          </section>
         </div>
       </div>
       <section class="gallery-wrap reveal"><p class="lbl">Gallery</p>
@@ -739,7 +754,9 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
           <section class="proj-block reveal"><p class="lbl">Results</p>
             <ul class="results">
               <li><span class="num">13th</span><span class="cap">of 72 teams · AUVSI-SUAS</span></li>
-              <li><span class="num">~200</span><span class="cap">hours on the airframe</span></li>
+              <li><span class="num">~350</span><span class="cap">hours on the airframe</span></li>
+              <li><span class="num">13 ft</span><span class="cap">wingspan</span></li>
+              <li><span class="num">55 lb</span><span class="cap">takeoff weight</span></li>
             </ul>
           </section>
         </div>
