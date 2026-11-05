@@ -288,7 +288,10 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
 
 /* ---------- project in-depth block (6-part template) ---------- */
 .project{padding-block:84px; border-top:1px solid var(--line); scroll-margin-top:calc(env(safe-area-inset-top,0px) + 60px)}
-.project .proj-tag{font-family:var(--mono); font-size:13px; letter-spacing:.04em; color:var(--accent); margin:0 0 10px}
+.project .proj-tag{font-family:var(--mono); font-size:clamp(15px, 1.5vw, 18px); letter-spacing:.04em; color:var(--accent); margin:0 0 12px}
+.wip-badge{display:inline-flex; align-items:center; gap:12px; margin:22px 0 0; font-family:var(--mono); font-size:clamp(16px, 2vw, 24px); font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); border:2px dashed color-mix(in srgb, var(--accent) 55%, transparent); border-radius:16px; padding:14px 24px; background:color-mix(in srgb, var(--accent) 10%, transparent)}
+.wip-badge::before{content:""; width:12px; height:12px; border-radius:50%; background:var(--accent); animation:wipPulse 1.6s ease-in-out infinite}
+@keyframes wipPulse{0%,100%{opacity:1; transform:scale(1)} 50%{opacity:.35; transform:scale(.8)}}
 .project .proj-title{font-size:clamp(28px,3.4vw,42px); font-weight:600; letter-spacing:-.025em; max-width:800px}
 .project .one-line{max-width:620px; color:var(--muted); font-size:20px; margin:14px 0 0}
 .project .lead{margin-top:32px; aspect-ratio:16/8; border-radius:24px; background:var(--surface); display:flex; align-items:center; justify-content:center; text-align:center; padding:24px; font-family:var(--mono); font-size:13px; color:var(--muted)}
@@ -446,6 +449,10 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
     <h2 class="reveal">Projects</h2>
     <p class="sub reveal">The things I've designed, built, and tested. Start anywhere.</p>
     <div class="proj-cards">
+      <a class="proj-card reveal" href="#proj-foamcutter">
+        <div class="thumb media-slot"><img class="slot-media" src="assets/foamcutter-lead.jpg" alt="CNC hot-wire foam cutter" loading="lazy"><span class="slot-label">[Foam-cutter lead photo]</span></div>
+        <div class="pc-body"><span class="tag">Auburn Vehicle Systems, Dynamics &amp; Design Lab</span><h3>CNC hot-wire foam cutter</h3><p>A cutter I designed and built to make the lab's wing and fuselage cores.</p><span class="more">View project →</span></div>
+      </a>
       <a class="proj-card reveal" href="#proj-aeroguard">
         <div class="thumb media-slot"><img class="slot-media" src="assets/aeroguard-lead.jpg" alt="AeroGuard counter-drone system" loading="lazy"><span class="slot-label">[AeroGuard lead photo]</span></div>
         <div class="pc-body"><span class="tag">SCI Technology · Co-op</span><h3>AeroGuard</h3><p>A fully autonomous system that detects and neutralizes aerial threats.</p><span class="more">View project →</span></div>
@@ -462,10 +469,6 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
         <div class="thumb media-slot"><img class="slot-media" src="assets/suas-lead.jpg" alt="Carbon-fiber SUAS airframe" loading="lazy"><span class="slot-label">[SUAS airframe lead photo]</span></div>
         <div class="pc-body"><span class="tag">Purdue Aerial Robotics Team</span><h3>Carbon-fiber SUAS airframe</h3><p>Hand-built fuselage and wings for an autonomous competition UAV.</p><span class="more">View project →</span></div>
       </a>
-      <a class="proj-card reveal" href="#proj-foamcutter">
-        <div class="thumb media-slot"><img class="slot-media" src="assets/foamcutter-lead.jpg" alt="CNC hot-wire foam cutter" loading="lazy"><span class="slot-label">[Foam-cutter lead photo]</span></div>
-        <div class="pc-body"><span class="tag">Auburn VSDDL</span><h3>CNC hot-wire foam cutter</h3><p>A cutter I designed and built to make the lab's wing and fuselage cores.</p><span class="more">View project →</span></div>
-      </a>
       <a class="proj-card reveal" href="#proj-afrl">
         <div class="thumb media-slot"><img class="slot-media" src="assets/afrl-lead.jpg" alt="AFRL counter-UAS concept" loading="lazy"><span class="slot-label">[AFRL render, when cleared]</span></div>
         <div class="pc-body"><span class="flag">In progress</span><span class="tag">Auburn Senior Design</span><h3>AFRL counter-UAS</h3><p>A man-portable counter-sUAS system to protect small tactical teams.</p><span class="more">View project →</span></div>
@@ -473,6 +476,97 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
     </div>
   </div>
 
+  <article class="project" id="proj-foamcutter">
+    <div class="wrap">
+      <p class="proj-tag reveal">Auburn Vehicle Systems, Dynamics &amp; Design Lab</p>
+      <h3 class="proj-title reveal">CNC hot-wire foam cutter</h3>
+      <p class="one-line reveal">A CNC hot-wire cutter I designed and built to make the lab's wing and fuselage cores — bigger and more reliably.</p>
+      <figure class="lead media-slot reveal" data-lightbox data-label="Foam-cutter lead photo">
+        <img class="slot-media" src="assets/foamcutter-lead.jpg" alt="CNC hot-wire foam cutter" loading="lazy">
+        <figcaption class="slot-label">[Foam-cutter lead photo]</figcaption>
+      </figure>
+      <div class="proj-grid">
+        <aside class="proj-aside reveal">
+          <dl class="spec">
+            <div><dt>Role</dt><dd>Undergraduate Researcher</dd></div>
+            <div><dt>Organization</dt><dd>Vehicle Systems, Dynamics &amp; Design Lab</dd></div>
+            <div><dt>Location</dt><dd>Auburn, AL</dd></div>
+            <div><dt>Dates</dt><dd>2026 – Present</dd></div>
+          </dl>
+          <ul class="chips"><li>Stepper motion control</li><li>3D printing</li><li>Wire harnesses</li><li>Design for manufacturing</li><li>Shop fabrication</li></ul>
+        </aside>
+        <div class="proj-body">
+          <section class="proj-block reveal"><p class="lbl">Problem</p><p>The lab needed to cut its own composite cores, but the available cutter was too small and unreliable for the airframes they wanted to build.</p></section>
+          <section class="proj-block reveal"><p class="lbl">What I did</p>
+            <div class="build">
+              <div class="build-step">
+                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-render.png" alt="CNC hot-wire foam cutter CAD render" loading="lazy"><figcaption class="slot-label">[CAD render]</figcaption></figure>
+                <div class="btext reveal"><span class="n">Design</span><h3>Design the frame</h3><p>Designed the frame in CAD, starting from an open-source baseline and enlarging the envelope.</p></div>
+              </div>
+              <div class="build-step">
+                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-wiring-diagram.png" alt="Foam cutter wiring diagram" loading="lazy"><figcaption class="slot-label">[Wiring diagram]</figcaption></figure>
+                <div class="btext reveal"><span class="n">Electronics design</span><h3>Design the electronic assembly</h3><p>Designed the electronic assembly and drew up the full wiring diagram.</p></div>
+              </div>
+              <div class="build-step">
+                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-g5.jpg" alt="Cutting and assembling the hardware" loading="lazy"><figcaption class="slot-label">[Photo: hardware]</figcaption></figure>
+                <div class="btext reveal"><span class="n">Build</span><h3>Cut &amp; assemble the hardware</h3><p>Cut the frame parts on table, miter, and band saws, and assembled the mechanical hardware.</p></div>
+              </div>
+              <div class="build-step">
+                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-g3.jpg" alt="Soldering the wire harnesses" loading="lazy"><figcaption class="slot-label">[Photo: harnesses]</figcaption></figure>
+                <div class="btext reveal"><span class="n">Solder</span><h3>Solder the wire harnesses</h3><p>Built and soldered every wire harness for the system.</p></div>
+              </div>
+              <div class="build-step">
+                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-boardmount.jpg" alt="3D-printed board mounts (STL)" loading="lazy"><figcaption class="slot-label">[Board-mount STL]</figcaption></figure>
+                <div class="btext reveal"><span class="n">Mounts</span><h3>Design &amp; 3D-print the board mounts</h3><p>Designed and 3D-printed custom board mounts that line the heat sinks up with the cooling fan.</p></div>
+              </div>
+              <div class="build-step">
+                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-g4.jpg" alt="Control board and power-supply mounting" loading="lazy"><figcaption class="slot-label">[Photo: board &amp; power]</figcaption></figure>
+                <div class="btext reveal"><span class="n">Mount</span><h3>Board &amp; power mounting</h3><p>Mounted the control board and power supply onto the printed mounts.</p></div>
+              </div>
+              <div class="build-step">
+                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-wiring.jpg" alt="Wiring and assembled electronics" loading="lazy"><figcaption class="slot-label">[Photo: wiring]</figcaption></figure>
+                <div class="btext reveal"><span class="n">Wire</span><h3>Wire it up</h3><p>Wired the system together and tidied the harness runs.</p></div>
+              </div>
+              <div class="build-step">
+                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-lead.jpg" alt="Everything assembled" loading="lazy"><figcaption class="slot-label">[Photo: assembled machine]</figcaption></figure>
+                <div class="btext reveal"><span class="n">Assemble</span><h3>Mechanical assembly</h3><p>Brought the frame, motion system, and electronics together into the finished machine.</p></div>
+              </div>
+              <div class="build-step">
+                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-software.jpg" alt="Motion-control software" loading="lazy"><figcaption class="slot-label">[Software]</figcaption></figure>
+                <div class="btext reveal"><span class="n">Software</span><h3>Tune the software</h3><p>Tuned the motion-control software to drive the hot wire accurately.</p></div>
+              </div>
+              <div class="build-step">
+                <figure class="shot media-slot reveal" data-lightbox><video class="slot-media" muted loop playsinline autoplay preload="metadata" poster="assets/foamcutter-cut.jpg"><source src="assets/foamcutter-cut.mp4" type="video/mp4"></video><figcaption class="slot-label">[Cutting clip — coming soon]</figcaption></figure>
+                <div class="btext reveal"><span class="n">Cut</span><h3>Cutting foam cores</h3><p>About 150 hours later, the lab can cut wing and fuselage cores for composite subscale aircraft.</p><span class="wip-badge">Work in progress</span></div>
+              </div>
+            </div>
+          </section>
+          <section class="proj-block reveal"><p class="lbl">Results</p>
+            <ul class="results">
+              <li><span class="num">~150</span><span class="cap">hours · design to cutting</span></li>
+              <li><span class="num">Larger</span><span class="cap">cut envelope than the original</span></li>
+            </ul>
+          </section>
+        </div>
+      </div>
+      <section class="gallery-wrap reveal"><p class="lbl">Gallery</p>
+        <figure class="gallery media-slot" data-lightbox data-label="Foam-cutter gallery">
+          <img class="slot-media" src="assets/foamcutter-render.png" alt="CAD render of the foam cutter" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-g1.jpg" alt="CAD of the foam cutter" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-g2.jpg" alt="CAD of the foam cutter" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-wiring-diagram.png" alt="Foam cutter wiring diagram" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-g5.jpg" alt="Cutting and assembling the hardware" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-g3.jpg" alt="Soldering the wire harnesses" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-boardmount.jpg" alt="3D-printed board mounts (STL)" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-g4.jpg" alt="Board and power-supply mounting" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-wiring.jpg" alt="Wiring and assembled electronics" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-lead.jpg" alt="The finished foam cutter" loading="lazy">
+          <img class="slot-media" src="assets/foamcutter-software.jpg" alt="Motion-control software" loading="lazy">
+          <figcaption class="slot-label">[Foam-cutter gallery — drop photos into assets/]</figcaption>
+        </figure>
+      </section>
+    </div>
+  </article>
   <article class="project" id="proj-aeroguard">
     <div class="wrap">
       <p class="proj-tag reveal">SCI Technology · Co-op</p>
@@ -672,103 +766,13 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
     </div>
   </article>
 
-  <article class="project" id="proj-foamcutter">
-    <div class="wrap">
-      <p class="proj-tag reveal">Auburn VSDDL</p>
-      <h3 class="proj-title reveal">CNC hot-wire foam cutter</h3>
-      <p class="one-line reveal">A CNC hot-wire cutter I designed and built to make the lab's wing and fuselage cores — bigger and more reliably.</p>
-      <figure class="lead media-slot reveal" data-lightbox data-label="Foam-cutter lead photo">
-        <img class="slot-media" src="assets/foamcutter-lead.jpg" alt="CNC hot-wire foam cutter" loading="lazy">
-        <figcaption class="slot-label">[Foam-cutter lead photo]</figcaption>
-      </figure>
-      <div class="proj-grid">
-        <aside class="proj-aside reveal">
-          <dl class="spec">
-            <div><dt>Role</dt><dd>Undergraduate Researcher</dd></div>
-            <div><dt>Organization</dt><dd>Auburn VSDDL</dd></div>
-            <div><dt>Location</dt><dd>Auburn, AL</dd></div>
-            <div><dt>Dates</dt><dd>2026 – Present</dd></div>
-          </dl>
-          <ul class="chips"><li>Stepper motion control</li><li>3D printing</li><li>Wire harnesses</li><li>Design for manufacturing</li><li>Shop fabrication</li></ul>
-        </aside>
-        <div class="proj-body">
-          <section class="proj-block reveal"><p class="lbl">Problem</p><p>The lab needed to cut its own composite cores, but the available cutter was too small and unreliable for the airframes they wanted to build.</p></section>
-          <section class="proj-block reveal"><p class="lbl">What I did</p>
-            <div class="build">
-              <div class="build-step">
-                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-render.png" alt="CNC hot-wire foam cutter CAD render" loading="lazy"><figcaption class="slot-label">[CAD render]</figcaption></figure>
-                <div class="btext reveal"><span class="n">Design</span><h3>Design the frame</h3><p>Designed the frame in CAD, starting from an open-source baseline and enlarging the envelope.</p></div>
-              </div>
-              <div class="build-step">
-                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-wiring-diagram.png" alt="Foam cutter wiring diagram" loading="lazy"><figcaption class="slot-label">[Wiring diagram]</figcaption></figure>
-                <div class="btext reveal"><span class="n">Electronics design</span><h3>Design the electronic assembly</h3><p>Designed the electronic assembly and drew up the full wiring diagram.</p></div>
-              </div>
-              <div class="build-step">
-                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-g5.jpg" alt="Cutting and assembling the hardware" loading="lazy"><figcaption class="slot-label">[Photo: hardware]</figcaption></figure>
-                <div class="btext reveal"><span class="n">Build</span><h3>Cut &amp; assemble the hardware</h3><p>Cut the frame parts on table, miter, and band saws, and assembled the mechanical hardware.</p></div>
-              </div>
-              <div class="build-step">
-                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-g3.jpg" alt="Soldering the wire harnesses" loading="lazy"><figcaption class="slot-label">[Photo: harnesses]</figcaption></figure>
-                <div class="btext reveal"><span class="n">Solder</span><h3>Solder the wire harnesses</h3><p>Built and soldered every wire harness for the system.</p></div>
-              </div>
-              <div class="build-step">
-                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-boardmount.jpg" alt="3D-printed board mounts (STL)" loading="lazy"><figcaption class="slot-label">[Board-mount STL]</figcaption></figure>
-                <div class="btext reveal"><span class="n">Mounts</span><h3>Design &amp; 3D-print the board mounts</h3><p>Designed and 3D-printed custom board mounts that line the heat sinks up with the cooling fan.</p></div>
-              </div>
-              <div class="build-step">
-                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-g4.jpg" alt="Control board and power-supply mounting" loading="lazy"><figcaption class="slot-label">[Photo: board &amp; power]</figcaption></figure>
-                <div class="btext reveal"><span class="n">Mount</span><h3>Board &amp; power mounting</h3><p>Mounted the control board and power supply onto the printed mounts.</p></div>
-              </div>
-              <div class="build-step">
-                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-wiring.jpg" alt="Wiring and assembled electronics" loading="lazy"><figcaption class="slot-label">[Photo: wiring]</figcaption></figure>
-                <div class="btext reveal"><span class="n">Wire</span><h3>Wire it up</h3><p>Wired the system together and tidied the harness runs.</p></div>
-              </div>
-              <div class="build-step">
-                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-lead.jpg" alt="Everything assembled" loading="lazy"><figcaption class="slot-label">[Photo: assembled machine]</figcaption></figure>
-                <div class="btext reveal"><span class="n">Assemble</span><h3>Mechanical assembly</h3><p>Brought the frame, motion system, and electronics together into the finished machine.</p></div>
-              </div>
-              <div class="build-step">
-                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/foamcutter-software.jpg" alt="Motion-control software" loading="lazy"><figcaption class="slot-label">[Software]</figcaption></figure>
-                <div class="btext reveal"><span class="n">Software</span><h3>Tune the software</h3><p>Tuned the motion-control software to drive the hot wire accurately.</p></div>
-              </div>
-              <div class="build-step">
-                <figure class="shot media-slot reveal" data-lightbox><video class="slot-media" muted loop playsinline autoplay preload="metadata" poster="assets/foamcutter-cut.jpg"><source src="assets/foamcutter-cut.mp4" type="video/mp4"></video><figcaption class="slot-label">[Cutting clip — coming soon]</figcaption></figure>
-                <div class="btext reveal"><span class="n">Cut</span><h3>Cutting foam cores</h3><p>About 150 hours later, the lab can cut wing and fuselage cores for composite subscale aircraft.</p></div>
-              </div>
-            </div>
-          </section>
-          <section class="proj-block reveal"><p class="lbl">Results</p>
-            <ul class="results">
-              <li><span class="num">~150</span><span class="cap">hours · design to cutting</span></li>
-              <li><span class="num">Larger</span><span class="cap">cut envelope than the original</span></li>
-            </ul>
-          </section>
-        </div>
-      </div>
-      <section class="gallery-wrap reveal"><p class="lbl">Gallery</p>
-        <figure class="gallery media-slot" data-lightbox data-label="Foam-cutter gallery">
-          <img class="slot-media" src="assets/foamcutter-render.png" alt="CAD render of the foam cutter" loading="lazy">
-          <img class="slot-media" src="assets/foamcutter-g1.jpg" alt="CAD of the foam cutter" loading="lazy">
-          <img class="slot-media" src="assets/foamcutter-g2.jpg" alt="CAD of the foam cutter" loading="lazy">
-          <img class="slot-media" src="assets/foamcutter-wiring-diagram.png" alt="Foam cutter wiring diagram" loading="lazy">
-          <img class="slot-media" src="assets/foamcutter-g5.jpg" alt="Cutting and assembling the hardware" loading="lazy">
-          <img class="slot-media" src="assets/foamcutter-g3.jpg" alt="Soldering the wire harnesses" loading="lazy">
-          <img class="slot-media" src="assets/foamcutter-boardmount.jpg" alt="3D-printed board mounts (STL)" loading="lazy">
-          <img class="slot-media" src="assets/foamcutter-g4.jpg" alt="Board and power-supply mounting" loading="lazy">
-          <img class="slot-media" src="assets/foamcutter-wiring.jpg" alt="Wiring and assembled electronics" loading="lazy">
-          <img class="slot-media" src="assets/foamcutter-lead.jpg" alt="The finished foam cutter" loading="lazy">
-          <img class="slot-media" src="assets/foamcutter-software.jpg" alt="Motion-control software" loading="lazy">
-          <figcaption class="slot-label">[Foam-cutter gallery — drop photos into assets/]</figcaption>
-        </figure>
-      </section>
-    </div>
-  </article>
 
   <article class="project" id="proj-afrl">
     <div class="wrap">
-      <p class="proj-tag reveal">Auburn Senior Design · <span style="color:var(--muted)">In progress</span></p>
+      <p class="proj-tag reveal">Auburn Senior Design</p>
       <h3 class="proj-title reveal">AFRL counter-UAS challenge</h3>
       <p class="one-line reveal">A man-portable counter-sUAS system to protect small tactical teams from Group 1 drone threats.</p>
+      <p class="reveal"><span class="wip-badge">Work in progress</span></p>
       <figure class="lead media-slot reveal" data-lightbox data-label="AFRL concept render">
         <img class="slot-media" src="assets/afrl-lead.jpg" alt="AFRL counter-UAS concept render" loading="lazy">
         <figcaption class="slot-label">[AFRL concept render, when cleared]</figcaption>
@@ -777,7 +781,8 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
         <aside class="proj-aside reveal">
           <dl class="spec">
             <div><dt>Role</dt><dd>Senior Design</dd></div>
-            <div><dt>Organization</dt><dd>Air Force Research Laboratory</dd></div>
+            <div><dt>Organization</dt><dd>Auburn University</dd></div>
+            <div><dt>Sponsor</dt><dd>Air Force Research Laboratory (AFRL)</dd></div>
             <div><dt>Location</dt><dd>Auburn, AL</dd></div>
             <div><dt>Dates</dt><dd>Aug 2026 – Present</dd></div>
           </dl>
@@ -787,14 +792,6 @@ a.proj-card::after{content:""; position:absolute; inset:0; border-radius:inherit
           <section class="proj-block reveal"><p class="lbl">Problem</p><p>Small tactical teams need a lightweight, portable way to detect, identify, track, and neutralize Group 1 drone threats.</p></section>
           <section class="proj-block reveal"><p class="lbl">What I did</p>
             <div class="build">
-              <div class="build-step">
-                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/afrl-step1.jpg" alt="Define the mission" loading="lazy"><figcaption class="slot-label">[Render, when cleared]</figcaption></figure>
-                <div class="btext reveal"><span class="n">Define</span><h3>Define the mission</h3><p>Worked with subject-matter experts to define a lightweight scouting-and-surveillance mission against Group 1 drone threats.</p></div>
-              </div>
-              <div class="build-step">
-                <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/afrl-step2.jpg" alt="Trade three concepts" loading="lazy"><figcaption class="slot-label">[Render, when cleared]</figcaption></figure>
-                <div class="btext reveal"><span class="n">Trade</span><h3>Trade three concepts</h3><p>Evaluated three concepts across the detect–identify–track–neutralize kill chain.</p></div>
-              </div>
               <div class="build-step">
                 <figure class="shot media-slot reveal" data-lightbox><img class="slot-media" src="assets/afrl-step3.jpg" alt="Preliminary design review" loading="lazy"><figcaption class="slot-label">[Render, when cleared]</figcaption></figure>
                 <div class="btext reveal"><span class="n">Review</span><h3>Preliminary Design Review</h3><p>Co-authored our 80-page PDR. In progress toward the detailed design.</p></div>
